@@ -1,6 +1,6 @@
 {
   "package_name": "ProcureGuard AI public submission package",
-  "generated_at": "2026-06-13T23:22:03.937491+00:00",
+  "generated_at": "2026-06-13T23:24:38.331905+00:00",
   "project": {
     "title": "ProcureGuard AI",
     "track": "Internal Enterprise Workflows",
@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5063,
-      "sha256": "ff6576743eb1b383c2d3e46f513a3be84dd80ebab7db34ac00bf91cbb8d9acd4"
+      "bytes": 5703,
+      "sha256": "c6af260e11131571751f0aae8f7214af3878a83881ab8a291359238549891c0f"
     },
     {
       "path": "agent_config.example.yaml",
@@ -429,13 +429,13 @@
     },
     {
       "path": "output/submission/procureguard-evidence-bundle-latest.zip",
-      "bytes": 15540,
-      "sha256": "f83961fe8edc9160113fa190dba5a5506aea46f48e8c90051141b56e76749be1"
+      "bytes": 15548,
+      "sha256": "d85d102f01777b66ee2e239140abee36480aa5875f5d6a3cda290c223d2f9e47"
     },
     {
       "path": "output/submission/procureguard-latest-report.md",
       "bytes": 15516,
-      "sha256": "7bbb04e9d22562735c00af51e70729dba241e310be5e3c87d4ccefc162708deb"
+      "sha256": "736e727ff45bdbeaa4051a22e39dd45c04b12a84e5d0a12d0a93203896b6e614"
     },
     {
       "path": "output/submission/procureguard-slides-preview.png",

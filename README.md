@@ -41,6 +41,18 @@ The project is designed for two modes:
 - The Custom Case panel lets judges run the same workflow on a new vendor request.
 - Fast demo mode can be enabled per run to force deterministic local agents for rehearsals, recordings, or quota-safe judging demos.
 
+## Visual Proof
+
+![ProcureGuard dashboard with Band room timeline and decision evidence](output/playwright/procureguard-dashboard-final.png)
+
+| Coordination handoffs | Task state and recruitment |
+| --- | --- |
+| ![Routed agent handoff map](output/playwright/procureguard-handoff-map-final.png) | ![Task state and agent recruitment board](output/playwright/procureguard-task-state-final.png) |
+
+| Business controls | Mobile proof |
+| --- | --- |
+| ![Business impact and governance controls](output/playwright/procureguard-impact-controls-final.png) | ![Responsive mobile dashboard proof](output/playwright/procureguard-mobile-final.png) |
+
 ## Run Locally
 
 ```powershell
