@@ -1,6 +1,6 @@
 {
   "package_name": "ProcureGuard AI public submission package",
-  "generated_at": "2026-06-13T23:19:01.403936+00:00",
+  "generated_at": "2026-06-13T23:22:03.937491+00:00",
   "project": {
     "title": "ProcureGuard AI",
     "track": "Internal Enterprise Workflows",
@@ -369,8 +369,8 @@
     },
     {
       "path": "docs/lablab_submission_form.md",
-      "bytes": 3814,
-      "sha256": "74bedd4eb5861673ece97b35673e417fb3c03ce5cae6efed5d79a08418e0d515"
+      "bytes": 3868,
+      "sha256": "1cdce38a0bf0aa5efbff63fe55e534438eecbb7a5cc6fd366c136c73be23bdf7"
     },
     {
       "path": "docs/pitch_deck.md",
@@ -384,8 +384,8 @@
     },
     {
       "path": "docs/submission_checklist.md",
-      "bytes": 2425,
-      "sha256": "d0c92c9e48407950c1f14f17c721ad008e8383566570845b270612b0fd242496"
+      "bytes": 2387,
+      "sha256": "34c4515b043cf3e6c040b729015680438ba7a3c1b0e0dad0642bf180a00a3e71"
     },
     {
       "path": "output/playwright/procureguard-custom-final.png",
@@ -429,13 +429,13 @@
     },
     {
       "path": "output/submission/procureguard-evidence-bundle-latest.zip",
-      "bytes": 15533,
-      "sha256": "39f584aef37db497cbb3d9644d98fcafc571b543f41d546606fe021f14dff768"
+      "bytes": 15540,
+      "sha256": "f83961fe8edc9160113fa190dba5a5506aea46f48e8c90051141b56e76749be1"
     },
     {
       "path": "output/submission/procureguard-latest-report.md",
       "bytes": 15516,
-      "sha256": "6b761d71daff1fbc9fd2807481cbe15b68d5f30f1e87c6083850d49e46c4980f"
+      "sha256": "7bbb04e9d22562735c00af51e70729dba241e310be5e3c87d4ccefc162708deb"
     },
     {
       "path": "output/submission/procureguard-slides-preview.png",

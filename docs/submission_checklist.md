@@ -22,7 +22,7 @@
 - Local app URL: `http://127.0.0.1:8765`
 - Deploy config: `render.yaml`
 - Docker config: `Dockerfile`
-- Public repository: create from this folder after confirming `.env.local` and `agent_config.yaml` are not committed.
+- Public repository: https://github.com/theihtisham/procureguard-ai-band-agents
 
 ## Demo Proof To Show
 

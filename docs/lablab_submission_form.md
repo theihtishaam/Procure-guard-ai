@@ -41,7 +41,7 @@ Track 1: Internal Enterprise Workflows
 
 ## Required URLs To Fill Before Submission
 
-- Public GitHub Repository: `TODO`
+- Public GitHub Repository: `https://github.com/theihtisham/procureguard-ai-band-agents`
 - Demo Application URL: `TODO`
 - Video Presentation URL: `TODO`
 - Slide Presentation URL or PDF: `TODO`

@@ -1,6 +1,6 @@
 # ProcureGuard Run Report: VectorCRM
 
-- Run ID: `run-416211e5`
+- Run ID: `run-25934419`
 - Provider: `heuristic`
 - Mode: `local-band-sim`
 - Collaboration score: `100/100`
@@ -30,14 +30,14 @@
 - **Governance control matrix**: met - 5 controls map security, legal, commercial, challenge, and audit readiness.
 - **Unified audit trail**: met - 17 messages and 17 structured payloads are preserved.
 - **Cross-framework profile**: met - 9 framework/runtime profiles are documented for Band live deployment.
-- **Tamper-evident audit seal**: met - SHA-256 seal 887a19e3357a1ffb... anchors the packet.
+- **Tamper-evident audit seal**: met - SHA-256 seal 8f5789186ca96469... anchors the packet.
 
 ## Task State Board
 
 - **Open procurement room** (complete) - Owner: Intake Coordinator. Case case-vectorcrm opened for VectorCRM. Evidence: recruitment message, case payload.
 - **Recruit specialist peers** (complete) - Owner: Intake Coordinator. 8 peer routing records created through Band-style mentions. Evidence: peer_recruitment, handoff map.
 - **Parallel specialist review** (complete) - Owner: Vendor, Finance, Security, Legal. 4 structured handoff artifacts returned to Evidence Clerk. Evidence: Vendor Research Agent, Finance ROI Agent, Security Compliance Agent, Legal Policy Agent.
-- **Build shared context packet** (complete) - Owner: Evidence Clerk Agent. Packet packet-f434ab41 readiness 36/100. Evidence: context_packet, shared_state.
+- **Build shared context packet** (complete) - Owner: Evidence Clerk Agent. Packet packet-f106678a readiness 36/100. Evidence: context_packet, shared_state.
 - **Challenge before decision** (complete) - Owner: Red Team Auditor Agent. Challenge level veto; cleared=False. Evidence: challenge_review, mitigation loop.
 - **Synthesize decision memo** (complete) - Owner: Approval Manager Agent. Decision escalate with score 49/100. Evidence: decision, risk_register.
 - **Route human approval gate** (blocked) - Owner: Human Procurement Lead. Gate status blocked; signoffs: Executive sponsor, Legal, Procurement, Security. Evidence: human_gate, approval_packet.
@@ -82,7 +82,7 @@
 
 ## Shared Context Packet
 
-- Packet ID: `packet-f434ab41`
+- Packet ID: `packet-f106678a`
 - Readiness: `36/100`
 - Summary: Evidence Clerk Agent consolidated 4 specialist handoffs. Average risk is 59/100 with 3 unresolved item(s).
 
@@ -153,7 +153,7 @@ ProcureGuard recommends escalate for VectorCRM. The business need is credible fo
 
 - Decision: escalate
 - Decision score: 49/100
-- Context packet: packet-f434ab41, readiness 36/100
+- Context packet: packet-f106678a, readiness 36/100
 - Red-team review: veto
 - Complete security and privacy review before production data access.
 - Attach SOC 2 or equivalent control evidence to the procurement record.
@@ -163,10 +163,10 @@ ProcureGuard recommends escalate for VectorCRM. The business need is credible fo
 ## Audit Seal
 
 - Algorithm: `sha256`
-- Digest: `887a19e3357a1ffbd1ca96d61c8e8aa36e40b92946a3c0abcbc66bbd768e891a`
+- Digest: `8f5789186ca96469867947c02aa2398ad8e530186e24923e0637cc3ac33649df`
 - Scope: case+artifacts+context+challenge+decision+human_gate+task_state+peer_recruitment+business_impact+governance_controls+timeline
 - Records sealed: `47`
-- Generated: `2026-06-13T23:19:01.140146+00:00`
+- Generated: `2026-06-13T23:22:03.705277+00:00`
 
 ## Room Timeline
 
@@ -176,7 +176,7 @@ ProcureGuard recommends escalate for VectorCRM. The business need is credible fo
 - **Security Compliance Agent** [handoff]: @Evidence Clerk Agent Handoff complete. Security Compliance Agent recommends controlled progression with risk score 70/100. Routed to: Evidence Clerk Agent.
 - **Legal Policy Agent** [handoff]: @Evidence Clerk Agent Handoff complete. Legal Policy Agent recommends controlled progression with risk score 68/100. Routed to: Evidence Clerk Agent.
 - **Intake Coordinator** [event]: @Evidence Clerk Agent Consolidate all specialist handoffs into one shared context packet for decision review. Routed to: Evidence Clerk Agent.
-- **Evidence Clerk Agent** [context]: @Red Team Auditor Agent Shared context packet packet-f434ab41 is ready for adversarial review. Readiness score: 36/100. Evidence Clerk Agent consolidated 4 specialist handoffs. Average risk is 59/100 with 3 unresolved item(s). Routed to: Red Team Auditor Agent.
+- **Evidence Clerk Agent** [context]: @Red Team Auditor Agent Shared context packet packet-f106678a is ready for adversarial review. Readiness score: 36/100. Evidence Clerk Agent consolidated 4 specialist handoffs. Average risk is 59/100 with 3 unresolved item(s). Routed to: Red Team Auditor Agent.
 - **Red Team Auditor Agent** [challenge]: @Security Compliance Agent @Legal Policy Agent Challenge issued before approval. Red-team review found veto level concerns. The case can proceed only if unresolved evidence and control gaps are visible to the human approver. Routed to: Security Compliance Agent, Legal Policy Agent.
 - **Security Compliance Agent** [challenge]: @Red Team Auditor Agent Mitigation acknowledged: production access should wait for SOC 2 evidence, SSO, logging, and scoped roles. Routed to: Red Team Auditor Agent.
 - **Legal Policy Agent** [challenge]: @Red Team Auditor Agent Mitigation acknowledged: DPA, subprocessors, retention, and audit rights must be cleared before purchase order. Routed to: Red Team Auditor Agent.
@@ -185,5 +185,5 @@ ProcureGuard recommends escalate for VectorCRM. The business need is credible fo
 - **Approval Manager Agent** [decision]: Decision recorded: escalate. VectorCRM can move forward only if the team closes the documented diligence gaps. Average specialist risk is 59/100 with 3 blocker(s).
 - **Approval Manager Agent** [approval_gate]: @Human Procurement Lead Human gate status: blocked. Required signoffs: Executive sponsor, Legal, Procurement, Security. Routed to: Human Procurement Lead.
 - **Human Procurement Lead** [approval_gate]: Acknowledged. Approval packet is ready for leadership review after listed conditions are cleared.
-- **Evidence Clerk Agent** [audit]: Audit seal generated with SHA-256 digest 887a19e3357a1ffb... for the decision packet.
+- **Evidence Clerk Agent** [audit]: Audit seal generated with SHA-256 digest 8f5789186ca96469... for the decision packet.
 - **Intake Coordinator** [event]: Workflow closed with a complete Band-room audit trail, red-team review, audit seal, and approval memo.
