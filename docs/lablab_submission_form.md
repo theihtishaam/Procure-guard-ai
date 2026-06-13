@@ -43,13 +43,14 @@ Track 1: Internal Enterprise Workflows
 
 - Public GitHub Repository: `https://github.com/theihtisham/procureguard-ai-band-agents`
 - Demo Application URL: `TODO`
-- Video Presentation URL: `TODO`
+- Video Presentation URL/file: `https://github.com/theihtisham/procureguard-ai-band-agents/blob/main/output/submission/procureguard-demo.webm`
 - Slide Presentation URL or PDF: `TODO`
 
 ## Local Artifacts
 
 - Cover image: `output/submission/procureguard-cover.png`
 - Slides preview: `output/submission/procureguard-slides-preview.png`
+- Demo video: `output/submission/procureguard-demo.webm`
 - Public-safe package: `output/submission/procureguard-public-submission-package.zip`
 - Latest report: `output/submission/procureguard-latest-report.md`
 - Evidence bundle: `output/submission/procureguard-evidence-bundle-latest.zip`

@@ -13,6 +13,8 @@ PACKAGE_PATH = OUTPUT_DIR / "procureguard-public-submission-package.zip"
 MANIFEST_PATH = OUTPUT_DIR / "procureguard-public-submission-manifest.json"
 LATEST_REPORT_PATH = OUTPUT_DIR / "procureguard-latest-report.md"
 LATEST_BUNDLE_PATH = OUTPUT_DIR / "procureguard-evidence-bundle-latest.zip"
+DEMO_VIDEO_PATH = OUTPUT_DIR / "procureguard-demo.webm"
+PUBLIC_REPOSITORY_URL = "https://github.com/theihtisham/procureguard-ai-band-agents"
 
 
 @dataclass
@@ -64,6 +66,7 @@ def main() -> None:
         "docs/demo_script.md",
         "output/submission/procureguard-latest-report.md",
         "output/submission/procureguard-evidence-bundle-latest.zip",
+        "output/submission/procureguard-demo.webm",
         "output/playwright/procureguard-impact-controls-final.png",
     ]
 
@@ -79,17 +82,17 @@ def main() -> None:
         item("Artifacts", "Slides preview exists", file_ok(OUTPUT_DIR / "procureguard-slides-preview.png", min_bytes=10_000), "output/submission/procureguard-slides-preview.png"),
         item("Artifacts", "Evidence bundle exists", file_ok(LATEST_BUNDLE_PATH, min_bytes=1_000), "output/submission/procureguard-evidence-bundle-latest.zip"),
         item("Artifacts", "Evidence bundle has run/report/manifest", zip_contains(LATEST_BUNDLE_PATH, ["run.json", "report.md", "audit-manifest.json"]), "evidence bundle contents"),
+        item("Artifacts", "Demo video exists", file_ok(DEMO_VIDEO_PATH, min_bytes=1_000_000), "output/submission/procureguard-demo.webm"),
         item("Code Repository", "Public-safe source package exists", file_ok(PACKAGE_PATH, min_bytes=1_000_000), "output/submission/procureguard-public-submission-package.zip"),
         item("Code Repository", "Public package includes source and proof artifacts", zip_contains(PACKAGE_PATH, package_names), "public package contents"),
+        item("Code Repository", "Public GitHub Repository URL is documented", text_contains(ROOT_DIR / "docs" / "lablab_submission_form.md", [PUBLIC_REPOSITORY_URL]), "docs/lablab_submission_form.md"),
         item("Safety", "Secret files are excluded by manifest", set(manifest.get("excluded_secret_files", [])) == {".env", ".env.local", "agent_config.yaml"}, "manifest excluded_secret_files"),
         item("Deploy", "Render config exists", file_ok(ROOT_DIR / "render.yaml"), "render.yaml"),
         item("Deploy", "Docker config exists", file_ok(ROOT_DIR / "Dockerfile"), "Dockerfile"),
     ]
 
     external = [
-        AuditItem("External Submission", "Public GitHub Repository URL", "EXTERNAL", "Create from sanitized folder/package."),
         AuditItem("External Submission", "Hosted demo Application URL", "EXTERNAL", "Deploy with render.yaml or Docker."),
-        AuditItem("External Submission", "Video Presentation URL/file", "EXTERNAL", "Record dashboard plus real Band room proof."),
         AuditItem("External Submission", "Real Band Remote Agent room recording", "EXTERNAL", "Follow docs/band_live_setup.md."),
     ]
     if external_steps:

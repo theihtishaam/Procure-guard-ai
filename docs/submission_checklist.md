@@ -23,6 +23,7 @@
 - Deploy config: `render.yaml`
 - Docker config: `Dockerfile`
 - Public repository: https://github.com/theihtisham/procureguard-ai-band-agents
+- Demo video artifact: `output/submission/procureguard-demo.webm`
 
 ## Demo Proof To Show
 

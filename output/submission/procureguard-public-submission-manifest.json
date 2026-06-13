@@ -1,6 +1,6 @@
 {
   "package_name": "ProcureGuard AI public submission package",
-  "generated_at": "2026-06-13T23:24:38.331905+00:00",
+  "generated_at": "2026-06-13T23:30:39.138048+00:00",
   "project": {
     "title": "ProcureGuard AI",
     "track": "Internal Enterprise Workflows",
@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5703,
-      "sha256": "c6af260e11131571751f0aae8f7214af3878a83881ab8a291359238549891c0f"
+      "bytes": 5358,
+      "sha256": "18f27f80a1aa621b74794fa078d9bfca00b41a891fc9531a9b63b2222616da38"
     },
     {
       "path": "agent_config.example.yaml",
@@ -118,6 +118,16 @@
       "sha256": "f341a8924df25ab103242d99ce7c9eb8217ab0dec019880d638954a96284dbfa"
     },
     {
+      "path": "data/runs/run-1cc57918.json",
+      "bytes": 45084,
+      "sha256": "dcf1990cf078277abcb532ed883b43918855ca78d8b49935ab4d9bbb504117fe"
+    },
+    {
+      "path": "data/runs/run-1f796720.json",
+      "bytes": 44516,
+      "sha256": "2b837574ad6382121368140188cdd2cbe04b33527cbd7288462089af5b6a3b1b"
+    },
+    {
       "path": "data/runs/run-21a7727d.json",
       "bytes": 41566,
       "sha256": "659226459227c78d73f4fcd63e31f8c1769c748c06c181a691948c93d29bed8c"
@@ -151,6 +161,11 @@
       "path": "data/runs/run-3d287fc5.json",
       "bytes": 30252,
       "sha256": "3b587cd1b98e8cedd4e171a3c88639c74d04f3d14e3f0d6277771975658b2fe3"
+    },
+    {
+      "path": "data/runs/run-3d705ae9.json",
+      "bytes": 44516,
+      "sha256": "92b65ff1cf68bdda426f9aa81b01434cc28811d5f4a55e1bed2523774fa7af92"
     },
     {
       "path": "data/runs/run-4555612c.json",
@@ -253,6 +268,11 @@
       "sha256": "aa5655ab2a6617c3bdfe6b0bcd1dda6f57392462ee57d7eee569dd5d6efcd50b"
     },
     {
+      "path": "data/runs/run-94dacfec.json",
+      "bytes": 45084,
+      "sha256": "a764cd6027974553f1c6ea41a1633d58a80af544b323ca5fb66d1eb2f5d7b9d2"
+    },
+    {
       "path": "data/runs/run-a614773b.json",
       "bytes": 45084,
       "sha256": "0ff89f5afc62550ac96bd82a16cdb10dd7d7e5c66d5bce604752b32f904850ef"
@@ -301,6 +321,11 @@
       "path": "data/runs/run-d6b613bb.json",
       "bytes": 36456,
       "sha256": "562a8151321ad1abfe4eea72f762afd076ef1dcb8950a3afd4f74f37bcfcd189"
+    },
+    {
+      "path": "data/runs/run-e4fbb092.json",
+      "bytes": 45084,
+      "sha256": "d862e01dc181c112667762aca6d438306d89cac88d80af1ff156ea30425333e5"
     },
     {
       "path": "data/runs/run-e9d9985f.json",
@@ -369,8 +394,8 @@
     },
     {
       "path": "docs/lablab_submission_form.md",
-      "bytes": 3868,
-      "sha256": "1cdce38a0bf0aa5efbff63fe55e534438eecbb7a5cc6fd366c136c73be23bdf7"
+      "bytes": 4035,
+      "sha256": "082dd89aec396a518bdfd5ed833f51ec5c80bfb4995a2cd18d1036cd48114e0d"
     },
     {
       "path": "docs/pitch_deck.md",
@@ -384,8 +409,8 @@
     },
     {
       "path": "docs/submission_checklist.md",
-      "bytes": 2387,
-      "sha256": "34c4515b043cf3e6c040b729015680438ba7a3c1b0e0dad0642bf180a00a3e71"
+      "bytes": 2453,
+      "sha256": "d906f6834707789b33305830ea2924aea1cf864f086fec0d8ed1d00bc98e53fa"
     },
     {
       "path": "output/playwright/procureguard-custom-final.png",
@@ -428,14 +453,19 @@
       "sha256": "31db3f609652271f96fde044be3659ffbd6212ce44bcfb719453c228b5a04fba"
     },
     {
+      "path": "output/submission/procureguard-demo.webm",
+      "bytes": 4655249,
+      "sha256": "d15178befdcd071565df68c4c9ad674a7138b61c05cc34a9d4234057ab8bc7d5"
+    },
+    {
       "path": "output/submission/procureguard-evidence-bundle-latest.zip",
-      "bytes": 15548,
-      "sha256": "d85d102f01777b66ee2e239140abee36480aa5875f5d6a3cda290c223d2f9e47"
+      "bytes": 15547,
+      "sha256": "230ca9bfeff2fb967b2d8c85f866af2398ab18047cd567abaf3842b334adbf44"
     },
     {
       "path": "output/submission/procureguard-latest-report.md",
       "bytes": 15516,
-      "sha256": "736e727ff45bdbeaa4051a22e39dd45c04b12a84e5d0a12d0a93203896b6e614"
+      "sha256": "a37e55ea43a9bcc3d86bc3a09e9e54e1179b81bb6133328f5b4c8f3762d39dc3"
     },
     {
       "path": "output/submission/procureguard-slides-preview.png",
@@ -454,13 +484,13 @@
     },
     {
       "path": "scripts/build_submission_package.py",
-      "bytes": 9874,
-      "sha256": "900756ff8533b8cf4312be66f38763dd6ccf1d4509e96ac103874b4119f3414e"
+      "bytes": 9904,
+      "sha256": "9f99983cc1405cf01b9d4f81372600731fedc1462d7732a288a22ba622a00925"
     },
     {
       "path": "scripts/final_submission_audit.py",
-      "bytes": 6072,
-      "sha256": "38b7b2b02bc89b016c2f55e006d16d7f4cc9405f54ff6dc843b3c8a8efaee600"
+      "bytes": 6347,
+      "sha256": "a857737a2c985c74e4b99dfb476d6d92a4c9873d02f02f90afbb33f8b7fdd9f7"
     },
     {
       "path": "scripts/live_band_agent.py",
@@ -541,14 +571,14 @@
     "Custom vendor case runner",
     "Fast demo mode for reliable recordings without spending credits",
     "Pitch deck, cover image, screenshots, and report artifacts",
+    "Recorded dashboard demo video artifact",
     "Render and Docker deployment configuration",
     "Final submission audit and copy-paste lablab form packet",
     "Band Human API remote-agent registration helper"
   ],
   "external_steps_remaining": [
-    "Create public GitHub repository from the sanitized project folder.",
     "Deploy app and add final demo URL to lablab submission.",
-    "Record real Band Remote Agent room using docs/band_live_setup.md."
+    "Record or append real Band Remote Agent room using docs/band_live_setup.md."
   ],
   "excluded_secret_files": [
     ".env",
