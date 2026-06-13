@@ -1,0 +1,17 @@
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.playwright-cli
+
+.env
+.env.local
+agent_config.yaml
+*.log
+
+data/runs/*.json
+output/
+node_modules/
+dist/

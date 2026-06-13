@@ -1,0 +1,16 @@
+[
+  {
+    "case_id": "case-vectorcrm",
+    "requester": "Maya Patel",
+    "department": "Revenue Operations",
+    "vendor_name": "VectorCRM",
+    "product": "AI-assisted CRM enrichment and lead routing",
+    "requested_amount_usd": 42000,
+    "renewal_or_new": "new",
+    "business_need": "Sales wants automated account enrichment, lead prioritization, and routing to reduce manual research time before a Q3 enterprise pipeline push.",
+    "data_access": ["customer contacts", "opportunity notes", "email metadata"],
+    "integrations": ["Salesforce", "HubSpot", "Slack"],
+    "timeline": "launch before Q3 pipeline review",
+    "notes": "Vendor claims SOC 2 Type II is available under NDA. DPA not yet reviewed."
+  }
+]

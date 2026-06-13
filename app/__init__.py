@@ -1,0 +1,2 @@
+"""ProcureGuard AI application package."""
+

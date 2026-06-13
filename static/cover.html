@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProcureGuard AI Cover</title>
+    <style>
+      :root {
+        --ink: #16202c;
+        --muted: #596879;
+        --line: #d9ded8;
+        --bg: #f5f6f2;
+        --panel: #ffffff;
+        --teal: #0f766e;
+        --indigo: #3f4f97;
+        --red: #b42318;
+        --green: #28724f;
+        --amber: #b7791f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        letter-spacing: 0;
+      }
+
+      .cover {
+        width: min(1180px, calc(100vw - 64px));
+        min-height: 660px;
+        display: grid;
+        grid-template-columns: 0.95fr 1.05fr;
+        gap: 36px;
+        align-items: center;
+      }
+
+      .copy {
+        display: grid;
+        gap: 20px;
+      }
+
+      .mark {
+        display: inline-grid;
+        place-items: center;
+        width: 58px;
+        height: 58px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: #fff;
+        font-size: 22px;
+        font-weight: 900;
+      }
+
+      h1,
+      p {
+        margin: 0;
+      }
+
+      h1 {
+        max-width: 620px;
+        font-size: 72px;
+        line-height: 0.96;
+      }
+
+      .subtitle {
+        max-width: 600px;
+        color: var(--muted);
+        font-size: 22px;
+        line-height: 1.35;
+      }
+
+      .proof-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        max-width: 650px;
+      }
+
+      .proof {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 14px;
+      }
+
+      .proof strong,
+      .proof span {
+        display: block;
+      }
+
+      .proof strong {
+        font-size: 22px;
+      }
+
+      .proof span {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .room {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 22px;
+        box-shadow: 0 28px 60px rgba(35, 45, 58, 0.12);
+      }
+
+      .room-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 16px;
+        margin-bottom: 18px;
+      }
+
+      .room-head strong {
+        font-size: 18px;
+      }
+
+      .pill {
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 7px 10px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .node {
+        min-height: 86px;
+        border: 1px solid var(--line);
+        border-left: 5px solid var(--indigo);
+        border-radius: 8px;
+        background: #fbfcfb;
+        padding: 12px;
+      }
+
+      .node:nth-child(2) {
+        border-left-color: var(--teal);
+      }
+
+      .node:nth-child(3) {
+        border-left-color: var(--amber);
+      }
+
+      .node:nth-child(4) {
+        border-left-color: var(--red);
+      }
+
+      .node:nth-child(5) {
+        border-left-color: var(--green);
+      }
+
+      .node:nth-child(6) {
+        border-left-color: var(--ink);
+      }
+
+      .node strong,
+      .node span {
+        display: block;
+      }
+
+      .node strong {
+        margin-bottom: 7px;
+        font-size: 15px;
+      }
+
+      .node span {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .footer-line {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      @media (max-width: 900px) {
+        .cover {
+          grid-template-columns: 1fr;
+          padding: 24px 0;
+        }
+
+        h1 {
+          font-size: 46px;
+        }
+
+        .proof-row,
+        .flow {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="cover">
+      <section class="copy">
+        <span class="mark">PG</span>
+        <h1>ProcureGuard AI</h1>
+        <p class="subtitle">
+          A Band-powered enterprise approval room where AI agents coordinate vendor review, exchange shared context,
+          challenge the decision, and produce an auditable human-ready packet.
+        </p>
+        <div class="proof-row">
+          <div class="proof"><strong>8</strong><span>AI agents</span></div>
+          <div class="proof"><strong>100</strong><span>Collaboration target</span></div>
+          <div class="proof"><strong>SHA-256</strong><span>Audit seal</span></div>
+        </div>
+      </section>
+
+      <section class="room" aria-label="Workflow proof">
+        <div class="room-head">
+          <strong>Band room workflow</strong>
+          <span class="pill">Hackathon submission</span>
+        </div>
+        <div class="flow">
+          <article class="node"><strong>Intake Coordinator</strong><span>@mentions specialists and opens task state.</span></article>
+          <article class="node"><strong>Specialist Agents</strong><span>Vendor, finance, security, and legal hand off structured artifacts.</span></article>
+          <article class="node"><strong>Evidence Clerk</strong><span>Creates one shared context packet with readiness score.</span></article>
+          <article class="node"><strong>Red Team Auditor</strong><span>Challenges unsafe assumptions before approval.</span></article>
+          <article class="node"><strong>Approval Manager</strong><span>Synthesizes a decision memo, risk register, and conditions.</span></article>
+          <article class="node"><strong>Human Gate</strong><span>Routes signoffs and seals the audit record.</span></article>
+        </div>
+        <p class="footer-line">Built for Band of Agents: handoffs, shared context, review loop, human approval, audit trail.</p>
+      </section>
+    </main>
+  </body>
+</html>

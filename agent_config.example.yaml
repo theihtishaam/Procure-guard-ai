@@ -1,0 +1,24 @@
+coordinator:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"
+vendor_research:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"
+finance_roi:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"
+security_compliance:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"
+legal_policy:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"
+evidence_clerk:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"
+red_team_auditor:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"
+approval_manager:
+  agent_id: "<band-agent-uuid>"
+  api_key: "<band-agent-api-key>"

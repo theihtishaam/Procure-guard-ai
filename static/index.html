@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ProcureGuard AI</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">PG</span>
+          <div>
+            <h1>ProcureGuard AI</h1>
+            <p>Vendor approval room</p>
+          </div>
+        </div>
+
+        <section class="panel">
+          <h2>Case Intake</h2>
+          <label for="caseSelect">Sample case</label>
+          <select id="caseSelect"></select>
+          <label class="toggle-row" for="fastDemoMode">
+            <input id="fastDemoMode" type="checkbox" />
+            <span>Fast demo mode</span>
+          </label>
+          <button id="runButton" type="button">Run Agent Review</button>
+          <button id="reportButton" type="button" disabled>Download Run Report</button>
+          <button id="bundleButton" type="button" disabled>Download Evidence Bundle</button>
+          <div id="health" class="health">Checking runtime...</div>
+        </section>
+
+        <section class="panel">
+          <details class="custom-case">
+            <summary>Custom case</summary>
+            <div class="form-grid">
+              <label for="customVendor">Vendor</label>
+              <input id="customVendor" type="text" value="Acme AI Ops" />
+              <label for="customProduct">Product</label>
+              <input id="customProduct" type="text" value="AI incident triage assistant" />
+              <label for="customRequester">Requester</label>
+              <input id="customRequester" type="text" value="Jordan Lee" />
+              <label for="customDepartment">Department</label>
+              <input id="customDepartment" type="text" value="IT Operations" />
+              <label for="customSpend">Spend USD</label>
+              <input id="customSpend" type="number" min="0" step="1000" value="68000" />
+              <label for="customData">Data access</label>
+              <input id="customData" type="text" value="support tickets, incident logs, employee emails" />
+              <label for="customIntegrations">Integrations</label>
+              <input id="customIntegrations" type="text" value="ServiceNow, Slack, Okta" />
+              <label for="customTimeline">Timeline</label>
+              <input id="customTimeline" type="text" value="pilot within 45 days" />
+              <label for="customNeed">Business need</label>
+              <textarea id="customNeed" rows="3">IT wants to reduce alert triage time and route incidents to the right owner before quarter-end reliability review.</textarea>
+              <label for="customNotes">Risk notes</label>
+              <textarea id="customNotes" rows="3">Vendor has SOC 2 summary but no DPA review yet. Production access would include employee communications metadata.</textarea>
+              <button id="customRunButton" type="button">Run Custom Review</button>
+            </div>
+          </details>
+        </section>
+
+        <section class="panel participants">
+          <h2>Agent Board</h2>
+          <div id="participants"></div>
+        </section>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Band of Agents submission system</p>
+            <h2 id="caseTitle">Procurement approval</h2>
+          </div>
+          <div class="run-meta">
+            <span id="providerBadge">Provider pending</span>
+            <span id="modeBadge">Room pending</span>
+          </div>
+        </header>
+
+        <section class="case-strip" id="caseStrip"></section>
+
+        <section class="evidence-strip" id="evidenceStrip">
+          <div class="case-metric">
+            <span>Collaboration Score</span>
+            <strong>Pending</strong>
+          </div>
+          <div class="case-metric">
+            <span>Shared Context</span>
+            <strong>Pending</strong>
+          </div>
+          <div class="case-metric">
+            <span>Human Gate</span>
+            <strong>Pending</strong>
+          </div>
+          <div class="case-metric">
+            <span>Audit Seal</span>
+            <strong>Pending</strong>
+          </div>
+        </section>
+
+        <section class="surface">
+          <div class="surface-head">
+            <h3>Coordination Handoff Map</h3>
+            <span id="handoffBadge">Pending</span>
+          </div>
+          <div id="handoffMap" class="handoff-map empty-state">Run a case to visualize how agents route work through Band-style @mentions.</div>
+        </section>
+
+        <section class="surface">
+          <div class="surface-head">
+            <h3>Task State & Recruitment</h3>
+            <span id="taskStateBadge">Pending</span>
+          </div>
+          <div class="coordination-grid">
+            <div id="taskStateBoard" class="task-state-board empty-state">Task ownership and status will appear after agents coordinate.</div>
+            <div id="recruitmentLedger" class="recruitment-ledger empty-state">Peer recruitment records will appear after the room opens.</div>
+          </div>
+        </section>
+
+        <section class="surface">
+          <div class="surface-head">
+            <h3>Business Impact & Controls</h3>
+            <span id="controlBadge">Pending</span>
+          </div>
+          <div class="impact-control-grid">
+            <div id="businessImpact" class="impact-grid empty-state">Business impact metrics will appear after the decision packet is built.</div>
+            <div id="governanceControls" class="control-matrix empty-state">Governance controls will appear after the review closes.</div>
+          </div>
+        </section>
+
+        <section class="grid">
+          <div class="surface timeline-surface">
+            <div class="surface-head">
+              <h3>Band Room Timeline</h3>
+              <span id="messageCount">0 messages</span>
+            </div>
+            <div id="timeline" class="timeline empty-state">Run a case to populate the room audit trail.</div>
+          </div>
+
+          <div class="surface decision-surface">
+            <div class="surface-head">
+              <h3>Decision Memo</h3>
+              <span id="decisionBadge">Pending</span>
+            </div>
+            <div id="decision" class="decision empty-state">No decision recorded yet.</div>
+          </div>
+        </section>
+
+        <section class="grid secondary-grid">
+          <div class="surface">
+            <div class="surface-head">
+              <h3>Shared Context Packet</h3>
+              <span id="contextBadge">Pending</span>
+            </div>
+            <div id="contextPacket" class="context-packet empty-state">Evidence Clerk output will appear here.</div>
+          </div>
+
+          <div class="surface">
+            <div class="surface-head">
+              <h3>Judging Evidence</h3>
+              <span id="collabBadge">0/100</span>
+            </div>
+            <div id="judgingEvidence" class="judging-list empty-state">Run a case to map the workflow to hackathon requirements.</div>
+          </div>
+        </section>
+
+        <section class="grid tertiary-grid">
+          <div class="surface">
+            <div class="surface-head">
+              <h3>Red Team Challenge</h3>
+              <span id="challengeBadge">Pending</span>
+            </div>
+            <div id="challengeReview" class="challenge-review empty-state">Adversarial review will appear here.</div>
+          </div>
+
+          <div class="surface">
+            <div class="surface-head">
+              <h3>Framework & Audit Proof</h3>
+              <span id="auditBadge">Pending</span>
+            </div>
+            <div id="technicalProof" class="technical-proof empty-state">Cross-framework profile and audit seal will appear here.</div>
+          </div>
+        </section>
+
+        <section class="surface">
+          <div class="surface-head">
+            <h3>Human Approval Gate</h3>
+            <span id="humanGateBadge">Pending</span>
+          </div>
+          <div id="humanGate" class="human-gate empty-state">Final approval packet will be routed here.</div>
+        </section>
+
+        <section class="surface">
+          <div class="surface-head">
+            <h3>Specialist Handoffs</h3>
+            <span id="artifactCount">0 artifacts</span>
+          </div>
+          <div id="artifacts" class="artifact-grid"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

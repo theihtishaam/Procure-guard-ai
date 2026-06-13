@@ -1,0 +1,558 @@
+{
+  "package_name": "ProcureGuard AI public submission package",
+  "generated_at": "2026-06-13T23:19:01.403936+00:00",
+  "project": {
+    "title": "ProcureGuard AI",
+    "track": "Internal Enterprise Workflows",
+    "hackathon": "Band of Agents Hackathon"
+  },
+  "contents": [
+    {
+      "path": ".env.example",
+      "bytes": 555,
+      "sha256": "943427c831f8f08f39ecbccda9d49702a35ff76bb1781abc9929eb5d4e1dcd96"
+    },
+    {
+      "path": "Dockerfile",
+      "bytes": 277,
+      "sha256": "26037aff1f1aeeeba22525bc0370009a3364abc3efcb136cf2f234aa99e87eeb"
+    },
+    {
+      "path": "Procfile",
+      "bytes": 31,
+      "sha256": "d13041e63ff860d4b142242eecf604e54f07a585385d0aad4f8e8c3bff0f2cc3"
+    },
+    {
+      "path": "README.md",
+      "bytes": 5063,
+      "sha256": "ff6576743eb1b383c2d3e46f513a3be84dd80ebab7db34ac00bf91cbb8d9acd4"
+    },
+    {
+      "path": "agent_config.example.yaml",
+      "bytes": 658,
+      "sha256": "552cc90142791a97fc8cee63e41978d59d897d768dd864f5d4b578325d6421c1"
+    },
+    {
+      "path": "app/__init__.py",
+      "bytes": 44,
+      "sha256": "64f265567f0e09519e254bf322acf6c3e4666440b0ee1d10819864eaf2a68067"
+    },
+    {
+      "path": "app/agents.py",
+      "bytes": 28856,
+      "sha256": "ae7c82254d23cd427d32735ef3fcf9bdc12e3aceed45dbe520f001b7074c14b7"
+    },
+    {
+      "path": "app/band_room.py",
+      "bytes": 1728,
+      "sha256": "9503bb1c85a57af2b1dc3bfc38672552e80da87b0189f2318ada4dffe085c3fa"
+    },
+    {
+      "path": "app/config.py",
+      "bytes": 1696,
+      "sha256": "f82c23e17bd4e9d3d3b30f796122ee65c75af73b3838a4ef54fa093bbd5555d8"
+    },
+    {
+      "path": "app/llm.py",
+      "bytes": 2390,
+      "sha256": "321c415bd03305238c76483e79bb7b0e43c88d34cfd6f945cd30b81468a2213e"
+    },
+    {
+      "path": "app/main.py",
+      "bytes": 5892,
+      "sha256": "3ce93bd055a47f704d590632fbcc3ad734e978c20e7d313ca3ec6eff0400b894"
+    },
+    {
+      "path": "app/models.py",
+      "bytes": 5839,
+      "sha256": "0c51aa1f478dd27a579b20b3ba7e51dac74628f61195da9929ebfe176caf37e5"
+    },
+    {
+      "path": "app/report.py",
+      "bytes": 6191,
+      "sha256": "b7103b3c490dcd861e34335d74e10ec50619af953654de5cf7e1df0fbfb6683c"
+    },
+    {
+      "path": "app/sample_cases.py",
+      "bytes": 2588,
+      "sha256": "84a6c72608ec417edc0a381159afe51929a595edbeaaecea20a10aa2301df531"
+    },
+    {
+      "path": "app/storage.py",
+      "bytes": 936,
+      "sha256": "e4e7d308a02cb73db8ca6224b468903d6b675b0cd70c255494ab2e03bb5365f1"
+    },
+    {
+      "path": "app/workflow.py",
+      "bytes": 28620,
+      "sha256": "a8361763f1e616c1682a48918bb8a870a568754a060526595197ebed9ebd8687"
+    },
+    {
+      "path": "data/runs/.gitkeep",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "data/runs/run-01e1cc4f.json",
+      "bytes": 21234,
+      "sha256": "e7d13fff02aa344d5a85f902336d6c028480b1239b5c0b37fad71c22784191c6"
+    },
+    {
+      "path": "data/runs/run-027148f3.json",
+      "bytes": 41566,
+      "sha256": "a192e55e5282fe2a2a4763f176a08175fc69675f977a35618aaa2ba896bd2bd2"
+    },
+    {
+      "path": "data/runs/run-05d848b7.json",
+      "bytes": 40973,
+      "sha256": "f949ac43e9a2177babc57861da3b45f5bf086fa3a1a9bc8cf9c099997b819c39"
+    },
+    {
+      "path": "data/runs/run-123114ae.json",
+      "bytes": 41566,
+      "sha256": "2e119e26b0bd980b81487a7f932f3f445d3a43ef821d9b0491c2b3c08a47a23b"
+    },
+    {
+      "path": "data/runs/run-17ceb715.json",
+      "bytes": 44516,
+      "sha256": "f341a8924df25ab103242d99ce7c9eb8217ab0dec019880d638954a96284dbfa"
+    },
+    {
+      "path": "data/runs/run-21a7727d.json",
+      "bytes": 41566,
+      "sha256": "659226459227c78d73f4fcd63e31f8c1769c748c06c181a691948c93d29bed8c"
+    },
+    {
+      "path": "data/runs/run-26a79d8f.json",
+      "bytes": 41566,
+      "sha256": "f2ff86cf2a37a57630034d067d2dc8bb03f5b49051847e8d6ddecd6d8c42b70f"
+    },
+    {
+      "path": "data/runs/run-26b37e88.json",
+      "bytes": 36456,
+      "sha256": "3519a8666a2ec58868117f3fd2449fb486c7455282f67f013ed40b8c3895c933"
+    },
+    {
+      "path": "data/runs/run-29e5bcd3.json",
+      "bytes": 40973,
+      "sha256": "7a0961971a66310ff7b1726f04a8556971b7a91e084cd96f98a58b69d3077edf"
+    },
+    {
+      "path": "data/runs/run-3c1ac4ad.json",
+      "bytes": 36456,
+      "sha256": "34ce6284b490a76017ef3c0ce1eb3e0f40b9ba454cf8dd3bd20a8555d8d58c7f"
+    },
+    {
+      "path": "data/runs/run-3cbf7c61.json",
+      "bytes": 35850,
+      "sha256": "7fc0b81582884acc8b8cb1df119c48ab883afc8ed21acaeca9179d67e3c01e5f"
+    },
+    {
+      "path": "data/runs/run-3d287fc5.json",
+      "bytes": 30252,
+      "sha256": "3b587cd1b98e8cedd4e171a3c88639c74d04f3d14e3f0d6277771975658b2fe3"
+    },
+    {
+      "path": "data/runs/run-4555612c.json",
+      "bytes": 41566,
+      "sha256": "03941efea90c636e7e918446b5c357486d74dea8a091a298f8bd7430877f913e"
+    },
+    {
+      "path": "data/runs/run-47d2da1b.json",
+      "bytes": 30007,
+      "sha256": "50c1f077af2f7182306aec72f9647dbd11836269033e25abf95c59c435aab953"
+    },
+    {
+      "path": "data/runs/run-4eb3e2d9.json",
+      "bytes": 40420,
+      "sha256": "5c18c402946223460efc64bea73124976ac411668f0345060e861199170eb1d9"
+    },
+    {
+      "path": "data/runs/run-50a2e607.json",
+      "bytes": 44516,
+      "sha256": "2a633a2d8777502c6ef2ae270c15ff1f951fc05e2b727a4814588c49e5ea0cc1"
+    },
+    {
+      "path": "data/runs/run-54bb9b79.json",
+      "bytes": 36456,
+      "sha256": "5ebb6e3b44f66c5dc8b9ccfd04225c8e012656ca9ecb8f984f990f6066dd7dd7"
+    },
+    {
+      "path": "data/runs/run-5a254a40.json",
+      "bytes": 35850,
+      "sha256": "89a68e7e56ca6b9cda5896aa73a285e4b3b1d41ee6791f069919d6c42e278641"
+    },
+    {
+      "path": "data/runs/run-6222a08b.json",
+      "bytes": 40973,
+      "sha256": "26df810e53df7c959f7067b1d36ada09620e6830c59776728a4211fc2a3331b8"
+    },
+    {
+      "path": "data/runs/run-6732ca58.json",
+      "bytes": 39493,
+      "sha256": "18ddb91891b4c3b655570be5ae6383c01697a28c15d2d7bed827a42289e5d46d"
+    },
+    {
+      "path": "data/runs/run-69211a15.json",
+      "bytes": 35850,
+      "sha256": "8194a6f80cbdbf19a7178622a8fd327428f1e0caa53ab860bff906fa1892bf0e"
+    },
+    {
+      "path": "data/runs/run-6cbf4937.json",
+      "bytes": 30682,
+      "sha256": "e7dd20ed7661ccdde682499c2f149b95462af5dfcac5f0f316eb4e42789db922"
+    },
+    {
+      "path": "data/runs/run-6d6d68ee.json",
+      "bytes": 39256,
+      "sha256": "a6f458626a599a11bf689f10efb19efecd0b351adf2262acab73d57177a9c74a"
+    },
+    {
+      "path": "data/runs/run-6f0f7a64.json",
+      "bytes": 36456,
+      "sha256": "ccc59ffd24a41e27ce7864e28a5333a7970b416994a90a569073fb075107b7cc"
+    },
+    {
+      "path": "data/runs/run-7ab8b887.json",
+      "bytes": 30660,
+      "sha256": "f2a11a6e46ff71b0ed5c7770881b42a93ffd6604e7edc669a84e63a4439324fb"
+    },
+    {
+      "path": "data/runs/run-7ce9f813.json",
+      "bytes": 36456,
+      "sha256": "74a4545f6341a6a8f99ca9d9455f930ad11da6e63d81b79f3d9177b76af6f84f"
+    },
+    {
+      "path": "data/runs/run-7f6824cd.json",
+      "bytes": 40973,
+      "sha256": "feff005bf97bd1b91001a17d4b9876df8271dd0fb60e35c3df62194c6b247ab9"
+    },
+    {
+      "path": "data/runs/run-806d63ad.json",
+      "bytes": 45084,
+      "sha256": "edf29bed50d3e894aa04bd0bdd44e92e952ad00f2a08b5cda7b4123a6df942ec"
+    },
+    {
+      "path": "data/runs/run-86e6af92.json",
+      "bytes": 36456,
+      "sha256": "cb6d814ba09cf0920c99f65282f3c7fdcc723c6651c36c32f0b2c14e8b7e0072"
+    },
+    {
+      "path": "data/runs/run-88380a23.json",
+      "bytes": 36231,
+      "sha256": "67af6208dc24cf6d212a403ecb1080627a5595e639c40611add2caeb8b5f44f3"
+    },
+    {
+      "path": "data/runs/run-8b161003.json",
+      "bytes": 45084,
+      "sha256": "6444e9aca8710d76e1c3056c1138ca4e87f569bcb8674ffd1f8d3c987a1fd0a6"
+    },
+    {
+      "path": "data/runs/run-8fc9d80a.json",
+      "bytes": 35850,
+      "sha256": "aa5655ab2a6617c3bdfe6b0bcd1dda6f57392462ee57d7eee569dd5d6efcd50b"
+    },
+    {
+      "path": "data/runs/run-a614773b.json",
+      "bytes": 45084,
+      "sha256": "0ff89f5afc62550ac96bd82a16cdb10dd7d7e5c66d5bce604752b32f904850ef"
+    },
+    {
+      "path": "data/runs/run-a79529a6.json",
+      "bytes": 40973,
+      "sha256": "32138e64ddf705c52384dcf8e8d48a2b2387b446a81cb54f808aa766910495da"
+    },
+    {
+      "path": "data/runs/run-ab8c8c04.json",
+      "bytes": 36456,
+      "sha256": "3132fefefd16bf7ad3ae3e71036aab6e4b196eaf14a63d61fd1e929089747035"
+    },
+    {
+      "path": "data/runs/run-ac158853.json",
+      "bytes": 41284,
+      "sha256": "3525dec6b70f41391fc1761a2c988fe878fa1c510cf7d388fc7c7b373933dd04"
+    },
+    {
+      "path": "data/runs/run-b0c386fa.json",
+      "bytes": 36456,
+      "sha256": "6478e2411932b41a5d6cb125f2f7f4bb5bf04f845db7af6360101975feba6059"
+    },
+    {
+      "path": "data/runs/run-be91fd32.json",
+      "bytes": 39086,
+      "sha256": "4536697746bfabd41bbd90ce761019e921bf592c0936c3433c7522a8d5ea6cb2"
+    },
+    {
+      "path": "data/runs/run-cd09666e.json",
+      "bytes": 41566,
+      "sha256": "44aa2b30759891cf53274cb34922849d0753ff6112a6478fb3872b0d6b1e636f"
+    },
+    {
+      "path": "data/runs/run-cd3c4590.json",
+      "bytes": 41566,
+      "sha256": "1b4e4e5bf319bf79ca6ea8619fc5ed84b93d8a34e9941c8501a7f2370717c865"
+    },
+    {
+      "path": "data/runs/run-ce75e49c.json",
+      "bytes": 35850,
+      "sha256": "3530e6aa88f700e08a91317bc7b25083c03276f14511a1826ee89b8de211c749"
+    },
+    {
+      "path": "data/runs/run-d6b613bb.json",
+      "bytes": 36456,
+      "sha256": "562a8151321ad1abfe4eea72f762afd076ef1dcb8950a3afd4f74f37bcfcd189"
+    },
+    {
+      "path": "data/runs/run-e9d9985f.json",
+      "bytes": 44516,
+      "sha256": "2517ad010cc00a26c3f7a6390290957f866edf9e447af2e777aa7dd3120c94f9"
+    },
+    {
+      "path": "data/runs/run-ebe3cefb.json",
+      "bytes": 21369,
+      "sha256": "7d7384c0b073526d43429ddca3d42a04bb24fe789025fa4ce805931607c042b5"
+    },
+    {
+      "path": "data/runs/run-ec026322.json",
+      "bytes": 45084,
+      "sha256": "c0505f5bbb79c3825d356fdf7e8c6e0e1e36ecbcfe743d35d2552fbe3fb2d10b"
+    },
+    {
+      "path": "data/runs/run-ef010922.json",
+      "bytes": 45084,
+      "sha256": "944b0b986646bfe2b6c2b22b1c8ab49865d040dd43cdb7a946ad472cebb6cf35"
+    },
+    {
+      "path": "data/runs/run-efcc29c3.json",
+      "bytes": 35850,
+      "sha256": "c217ae7495a382140c6aac4480717e03065943dc9cd07a392cdc02e7ebc09e38"
+    },
+    {
+      "path": "data/runs/run-f5686e11.json",
+      "bytes": 44516,
+      "sha256": "0c5b2123db8e24838722543734573b0c7cac624f6cf0cb7f0e5c53c9365c0c40"
+    },
+    {
+      "path": "data/runs/run-facbfb61.json",
+      "bytes": 40973,
+      "sha256": "56b1b953d04febae5df8a4aea72507ae18cadfc297ca2ace3128c0d5f12b17ca"
+    },
+    {
+      "path": "data/sample_cases.json",
+      "bytes": 720,
+      "sha256": "0f22c49ffc442640c641b0c681a6f12296c6356579a6cf2d5f184acac4bf12ae"
+    },
+    {
+      "path": "docs/band_live_setup.md",
+      "bytes": 2763,
+      "sha256": "57be49bec77524e9b8500a632d0c84f041c1cf2e1786717eb03687d6bf28b687"
+    },
+    {
+      "path": "docs/competitive_research.md",
+      "bytes": 3077,
+      "sha256": "5c57a4b8e275405e446c4270711a89b70b7da1f965173894966f33eb76b2757f"
+    },
+    {
+      "path": "docs/deep_winning_plan.md",
+      "bytes": 8185,
+      "sha256": "49abb45fbd9650ad088f284bc84ab248641a8311be008dd527bc7137d661af64"
+    },
+    {
+      "path": "docs/demo_script.md",
+      "bytes": 2646,
+      "sha256": "66b0cf3edfe1a9d25a72550f8c139d7ac17de3c3424f84ac20695b37acb0015b"
+    },
+    {
+      "path": "docs/judging_map.md",
+      "bytes": 2240,
+      "sha256": "caa98ce8b32749450703cfe27e39c368c7b4e89fde0f0c38d2bd6ce9b03cee99"
+    },
+    {
+      "path": "docs/lablab_submission_form.md",
+      "bytes": 3814,
+      "sha256": "74bedd4eb5861673ece97b35673e417fb3c03ce5cae6efed5d79a08418e0d515"
+    },
+    {
+      "path": "docs/pitch_deck.md",
+      "bytes": 585,
+      "sha256": "186c5de3aa08255dfb7514326faf702bd341241f37c2c3a145cc6c64fbca1534"
+    },
+    {
+      "path": "docs/submission.md",
+      "bytes": 3255,
+      "sha256": "58d31d785268b8cc34e2afe47c1602345b0d4728b2a703676037bd8e9ac7d2be"
+    },
+    {
+      "path": "docs/submission_checklist.md",
+      "bytes": 2425,
+      "sha256": "d0c92c9e48407950c1f14f17c721ad008e8383566570845b270612b0fd242496"
+    },
+    {
+      "path": "output/playwright/procureguard-custom-final.png",
+      "bytes": 565522,
+      "sha256": "6ec7fb41372138f1ab238951cc7fb3b47a0261818c7f83fa94ce260efe1eeac0"
+    },
+    {
+      "path": "output/playwright/procureguard-dashboard-final.png",
+      "bytes": 518294,
+      "sha256": "657e32a0ee3f4d92a8c92f3dcb2ccbd3c50f2f02f3b980f238cb3a4f779dad49"
+    },
+    {
+      "path": "output/playwright/procureguard-fast-demo-mode-final.png",
+      "bytes": 549141,
+      "sha256": "58f09ed887d1ce722ab7ed6bb1c1a51993d483ad3c2effd7eb4329f2406d8c93"
+    },
+    {
+      "path": "output/playwright/procureguard-handoff-map-final.png",
+      "bytes": 547655,
+      "sha256": "5e0eb7d0c2324c285d715726409b844a55e5db33570917278f539bb1390244fe"
+    },
+    {
+      "path": "output/playwright/procureguard-impact-controls-final.png",
+      "bytes": 821452,
+      "sha256": "f265c8a09487bfeec91651e4cf6a68780c64e2cba575f9be11ce8d4a4acb89bf"
+    },
+    {
+      "path": "output/playwright/procureguard-mobile-final.png",
+      "bytes": 477549,
+      "sha256": "e439e5d35da46270f4a5aeb95b5ebab5d80dc7c8850cca353cde0794c90c32e6"
+    },
+    {
+      "path": "output/playwright/procureguard-task-state-final.png",
+      "bytes": 696546,
+      "sha256": "692ba2e1b77f8e1b6bfe617f679642cbbae91551e6a9188d3bc6df0cd0aac55d"
+    },
+    {
+      "path": "output/submission/procureguard-cover.png",
+      "bytes": 79307,
+      "sha256": "31db3f609652271f96fde044be3659ffbd6212ce44bcfb719453c228b5a04fba"
+    },
+    {
+      "path": "output/submission/procureguard-evidence-bundle-latest.zip",
+      "bytes": 15533,
+      "sha256": "39f584aef37db497cbb3d9644d98fcafc571b543f41d546606fe021f14dff768"
+    },
+    {
+      "path": "output/submission/procureguard-latest-report.md",
+      "bytes": 15516,
+      "sha256": "6b761d71daff1fbc9fd2807481cbe15b68d5f30f1e87c6083850d49e46c4980f"
+    },
+    {
+      "path": "output/submission/procureguard-slides-preview.png",
+      "bytes": 764377,
+      "sha256": "269bd8e08bf20c2f8ccebab557d17e0a69c92ad7f413f2a7d8e069d436b2e1c3"
+    },
+    {
+      "path": "pyproject.toml",
+      "bytes": 583,
+      "sha256": "07a9d31a95c9de3d686574be7ec850d4950b0445ba2d55f709dd4a6ac69540ca"
+    },
+    {
+      "path": "render.yaml",
+      "bytes": 477,
+      "sha256": "c095f76725c4101a63dc9854de02de32d235197da4b2ca65fde1a0e31904fae6"
+    },
+    {
+      "path": "scripts/build_submission_package.py",
+      "bytes": 9874,
+      "sha256": "900756ff8533b8cf4312be66f38763dd6ccf1d4509e96ac103874b4119f3414e"
+    },
+    {
+      "path": "scripts/final_submission_audit.py",
+      "bytes": 6072,
+      "sha256": "38b7b2b02bc89b016c2f55e006d16d7f4cc9405f54ff6dc843b3c8a8efaee600"
+    },
+    {
+      "path": "scripts/live_band_agent.py",
+      "bytes": 3166,
+      "sha256": "7162e7eeec5b7de7a523d6d1c7bcab613f40b087a3904f5c87063bfb0305b709"
+    },
+    {
+      "path": "scripts/register_band_agents.py",
+      "bytes": 4207,
+      "sha256": "306a20df1b1a51f1f06df62caef2878d407941fa0c95862ec7d8d5c4da818746"
+    },
+    {
+      "path": "scripts/smoke_test.py",
+      "bytes": 2087,
+      "sha256": "ce07ab74e64fd55e0ec43c47cf01cd23ee668206a33ff555f7e1f0825f6b835a"
+    },
+    {
+      "path": "scripts/verify_submission.py",
+      "bytes": 4724,
+      "sha256": "b39475dc2c3f7de04fc4129de76a6219f2f322d480c461c9a2f45e6af6e65429"
+    },
+    {
+      "path": "static/app.js",
+      "bytes": 21998,
+      "sha256": "a1e519c9c57c189879b3d8c079977fc9ed0e95894f96a2550c3e9931e266d6ff"
+    },
+    {
+      "path": "static/assets/procureguard-cover.png",
+      "bytes": 79307,
+      "sha256": "31db3f609652271f96fde044be3659ffbd6212ce44bcfb719453c228b5a04fba"
+    },
+    {
+      "path": "static/assets/procureguard-dashboard-final.png",
+      "bytes": 518294,
+      "sha256": "657e32a0ee3f4d92a8c92f3dcb2ccbd3c50f2f02f3b980f238cb3a4f779dad49"
+    },
+    {
+      "path": "static/cover.html",
+      "bytes": 6329,
+      "sha256": "631f6c5754f364af544e5d02be69b1b41835ebf1fd710eee4471de5204a03a7a"
+    },
+    {
+      "path": "static/favicon.svg",
+      "bytes": 383,
+      "sha256": "29e83c78a5d77167926ecd4376dd71979889fa5487295bfa6f0067cb7fb809d3"
+    },
+    {
+      "path": "static/index.html",
+      "bytes": 8607,
+      "sha256": "11c9b820127a096973604823e400d79700b14292f4dd3b5ae6ab754b8165e3bd"
+    },
+    {
+      "path": "static/slides.html",
+      "bytes": 9177,
+      "sha256": "23aa024292d5676dfc1d5b30d4d8abeaee2ce624b091b62ffedad10df8ac6f60"
+    },
+    {
+      "path": "static/styles.css",
+      "bytes": 14387,
+      "sha256": "9c7cc08c02d3f5bc6fcfe8d93a2da82dcb9aed65aab66b24f9c4ef361a579a20"
+    },
+    {
+      "path": "uv.lock",
+      "bytes": 638213,
+      "sha256": "42cfda508f55fde0fe1f69c8a84fa87157e2a30c6b52580fedf3004e2c3020b9"
+    }
+  ],
+  "proof_points": [
+    "8 AI agents plus human approval gate",
+    "17-message Band-style room timeline",
+    "Coordination Handoff Map generated from @mention edges",
+    "Task State & Recruitment board with owners, status, and evidence refs",
+    "Business Impact & Controls matrix for enterprise value proof",
+    "Shared Context Packet from Evidence Clerk",
+    "Red Team Challenge with escalation guardrail",
+    "SHA-256 audit seal",
+    "Evidence bundle ZIP export",
+    "Custom vendor case runner",
+    "Fast demo mode for reliable recordings without spending credits",
+    "Pitch deck, cover image, screenshots, and report artifacts",
+    "Render and Docker deployment configuration",
+    "Final submission audit and copy-paste lablab form packet",
+    "Band Human API remote-agent registration helper"
+  ],
+  "external_steps_remaining": [
+    "Create public GitHub repository from the sanitized project folder.",
+    "Deploy app and add final demo URL to lablab submission.",
+    "Record real Band Remote Agent room using docs/band_live_setup.md."
+  ],
+  "excluded_secret_files": [
+    ".env",
+    ".env.local",
+    "agent_config.yaml"
+  ]
+}

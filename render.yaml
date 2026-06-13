@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: procureguard-ai
+    runtime: python
+    plan: free
+    buildCommand: pip install uv && uv sync --frozen
+    startCommand: uv run python -m app.main
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: ENABLE_LIVE_LLM
+        value: "1"
+      - key: AIMLAPI_BASE_URL
+        value: https://api.aimlapi.com/v1
+      - key: AIMLAPI_MODEL_PRIMARY
+        value: gpt-4o-mini
+      - key: AIMLAPI_MODEL_FAST
+        value: gpt-4o-mini
