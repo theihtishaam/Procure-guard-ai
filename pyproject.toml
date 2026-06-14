@@ -15,7 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 band = [
-    "band-sdk[langgraph]>=0.2.11",
+    "band-sdk[langgraph,crewai,pydantic-ai,anthropic]>=0.2.11",
     "langchain-openai>=0.2.0",
     "langgraph>=0.2.0",
 ]

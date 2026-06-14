@@ -1,6 +1,6 @@
 {
   "package_name": "ProcureGuard AI public submission package",
-  "generated_at": "2026-06-13T23:30:39.138048+00:00",
+  "generated_at": "2026-06-14T14:24:16.026194+00:00",
   "project": {
     "title": "ProcureGuard AI",
     "track": "Internal Enterprise Workflows",
@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5358,
-      "sha256": "18f27f80a1aa621b74794fa078d9bfca00b41a891fc9531a9b63b2222616da38"
+      "bytes": 6901,
+      "sha256": "665d8510fbcdd0179b5de1e177c66140ffc65e3f501dc6ffe3e6e1295a47db9c"
     },
     {
       "path": "agent_config.example.yaml",
@@ -39,8 +39,13 @@
     },
     {
       "path": "app/agents.py",
-      "bytes": 28856,
-      "sha256": "ae7c82254d23cd427d32735ef3fcf9bdc12e3aceed45dbe520f001b7074c14b7"
+      "bytes": 32402,
+      "sha256": "0de8aa4ece884f236630bf3ab4ca9c88858dcd4d62a9a1986e546d94170befcb"
+    },
+    {
+      "path": "app/band_client.py",
+      "bytes": 10726,
+      "sha256": "4b7e5de992e523c662d762ad41f46ee22aa265ce40446e58019a2bb9a26c4429"
     },
     {
       "path": "app/band_room.py",
@@ -48,9 +53,14 @@
       "sha256": "9503bb1c85a57af2b1dc3bfc38672552e80da87b0189f2318ada4dffe085c3fa"
     },
     {
+      "path": "app/band_session.py",
+      "bytes": 13839,
+      "sha256": "38b64296d5a0bdb31e0c8ae7786623a5558f909d025547bb0aa9a9dc7bace871"
+    },
+    {
       "path": "app/config.py",
-      "bytes": 1696,
-      "sha256": "f82c23e17bd4e9d3d3b30f796122ee65c75af73b3838a4ef54fa093bbd5555d8"
+      "bytes": 1810,
+      "sha256": "0930f74842bd9ab11bd85cf2c46bb98cf922859588922272bf52d322bc95e4d4"
     },
     {
       "path": "app/llm.py",
@@ -64,18 +74,18 @@
     },
     {
       "path": "app/models.py",
-      "bytes": 5839,
-      "sha256": "0c51aa1f478dd27a579b20b3ba7e51dac74628f61195da9929ebfe176caf37e5"
+      "bytes": 6781,
+      "sha256": "65d4a57eb47f9c9d4e1bdc9de47477cfc5a54c2c543a329b5683e3c74f1d54ca"
     },
     {
       "path": "app/report.py",
-      "bytes": 6191,
-      "sha256": "b7103b3c490dcd861e34335d74e10ec50619af953654de5cf7e1df0fbfb6683c"
+      "bytes": 7951,
+      "sha256": "e983e25154c18a1d057a7c3830d34d39487390592b41728137001705604382b5"
     },
     {
       "path": "app/sample_cases.py",
-      "bytes": 2588,
-      "sha256": "84a6c72608ec417edc0a381159afe51929a595edbeaaecea20a10aa2301df531"
+      "bytes": 2576,
+      "sha256": "e451251ca6836bf94852b642711b5f4511bc3b2f8a1077ccd170c0d0cb43f89d"
     },
     {
       "path": "app/storage.py",
@@ -84,8 +94,8 @@
     },
     {
       "path": "app/workflow.py",
-      "bytes": 28620,
-      "sha256": "a8361763f1e616c1682a48918bb8a870a568754a060526595197ebed9ebd8687"
+      "bytes": 30745,
+      "sha256": "13a3acbb457f8840a4e128be57f659264bf6238e9ca4b4f98e6fb557d093c7f0"
     },
     {
       "path": "data/runs/.gitkeep",
@@ -113,6 +123,11 @@
       "sha256": "2e119e26b0bd980b81487a7f932f3f445d3a43ef821d9b0491c2b3c08a47a23b"
     },
     {
+      "path": "data/runs/run-12416475.json",
+      "bytes": 47640,
+      "sha256": "194688600aa278e25ddba83825eb440d79f4330bc11b8fc99006f4f1c890b0a7"
+    },
+    {
       "path": "data/runs/run-17ceb715.json",
       "bytes": 44516,
       "sha256": "f341a8924df25ab103242d99ce7c9eb8217ab0dec019880d638954a96284dbfa"
@@ -133,6 +148,11 @@
       "sha256": "659226459227c78d73f4fcd63e31f8c1769c748c06c181a691948c93d29bed8c"
     },
     {
+      "path": "data/runs/run-22a6b3cb.json",
+      "bytes": 50646,
+      "sha256": "10e681487354652daa3db705c11040d9bc1c9a1ab0bbc5c092a4453e18cd5e48"
+    },
+    {
       "path": "data/runs/run-26a79d8f.json",
       "bytes": 41566,
       "sha256": "f2ff86cf2a37a57630034d067d2dc8bb03f5b49051847e8d6ddecd6d8c42b70f"
@@ -143,9 +163,24 @@
       "sha256": "3519a8666a2ec58868117f3fd2449fb486c7455282f67f013ed40b8c3895c933"
     },
     {
+      "path": "data/runs/run-29ae9d6e.json",
+      "bytes": 51198,
+      "sha256": "9f22d0fb209f55e4169c94d8f02d5c3fc9e4cb7c95dc63049003dc008bacbefd"
+    },
+    {
       "path": "data/runs/run-29e5bcd3.json",
       "bytes": 40973,
       "sha256": "7a0961971a66310ff7b1726f04a8556971b7a91e084cd96f98a58b69d3077edf"
+    },
+    {
+      "path": "data/runs/run-2c43d1e6.json",
+      "bytes": 47330,
+      "sha256": "65fefdf644ccb41ce13ca9c6ae5c60bd058f5dec5afe3395bb01ca2de91e1e42"
+    },
+    {
+      "path": "data/runs/run-2d9c2a93.json",
+      "bytes": 47280,
+      "sha256": "ab941eb4aed74722f2ff19f93540fa2357faa5de854e6bbea07f6af4b2c4c734"
     },
     {
       "path": "data/runs/run-3c1ac4ad.json",
@@ -173,9 +208,19 @@
       "sha256": "03941efea90c636e7e918446b5c357486d74dea8a091a298f8bd7430877f913e"
     },
     {
+      "path": "data/runs/run-4744021a.json",
+      "bytes": 47640,
+      "sha256": "9d7890d9b71eb0490e9a8642c9f2606c75606abeed9d5cb4462a163649189ac2"
+    },
+    {
       "path": "data/runs/run-47d2da1b.json",
       "bytes": 30007,
       "sha256": "50c1f077af2f7182306aec72f9647dbd11836269033e25abf95c59c435aab953"
+    },
+    {
+      "path": "data/runs/run-4803d883.json",
+      "bytes": 47640,
+      "sha256": "b4781890ffd2c333cf242a44db3e98616e4e6696a13df9a4d321968848179943"
     },
     {
       "path": "data/runs/run-4eb3e2d9.json",
@@ -186,6 +231,11 @@
       "path": "data/runs/run-50a2e607.json",
       "bytes": 44516,
       "sha256": "2a633a2d8777502c6ef2ae270c15ff1f951fc05e2b727a4814588c49e5ea0cc1"
+    },
+    {
+      "path": "data/runs/run-54418132.json",
+      "bytes": 56805,
+      "sha256": "04208042074705897794088fbe28ab3afba9cedbc8540bd1e0adf856eae1728d"
     },
     {
       "path": "data/runs/run-54bb9b79.json",
@@ -208,6 +258,11 @@
       "sha256": "18ddb91891b4c3b655570be5ae6383c01697a28c15d2d7bed827a42289e5d46d"
     },
     {
+      "path": "data/runs/run-68cad4c4.json",
+      "bytes": 47640,
+      "sha256": "e25b61980cf7236d89cc11178a2ad6f416f75cc02195e2a11986475ad05f606c"
+    },
+    {
       "path": "data/runs/run-69211a15.json",
       "bytes": 35850,
       "sha256": "8194a6f80cbdbf19a7178622a8fd327428f1e0caa53ab860bff906fa1892bf0e"
@@ -226,6 +281,11 @@
       "path": "data/runs/run-6f0f7a64.json",
       "bytes": 36456,
       "sha256": "ccc59ffd24a41e27ce7864e28a5333a7970b416994a90a569073fb075107b7cc"
+    },
+    {
+      "path": "data/runs/run-6f863333.json",
+      "bytes": 47694,
+      "sha256": "07caadb64e274c712eb2ea562c02bdb1ddb32f81b9c097b7fed2e76033bd29df"
     },
     {
       "path": "data/runs/run-7ab8b887.json",
@@ -253,6 +313,11 @@
       "sha256": "cb6d814ba09cf0920c99f65282f3c7fdcc723c6651c36c32f0b2c14e8b7e0072"
     },
     {
+      "path": "data/runs/run-87207cd0.json",
+      "bytes": 47640,
+      "sha256": "419556a68ab2c20d463a7d14badb97b37dae974ccbc8c744a8fd927b18b1e0bf"
+    },
+    {
       "path": "data/runs/run-88380a23.json",
       "bytes": 36231,
       "sha256": "67af6208dc24cf6d212a403ecb1080627a5595e639c40611add2caeb8b5f44f3"
@@ -266,6 +331,11 @@
       "path": "data/runs/run-8fc9d80a.json",
       "bytes": 35850,
       "sha256": "aa5655ab2a6617c3bdfe6b0bcd1dda6f57392462ee57d7eee569dd5d6efcd50b"
+    },
+    {
+      "path": "data/runs/run-917a0458.json",
+      "bytes": 47640,
+      "sha256": "814850c1290345822af239fa6ba1f4d15f6d7288eb96db7f40c2e75917a785c5"
     },
     {
       "path": "data/runs/run-94dacfec.json",
@@ -298,6 +368,11 @@
       "sha256": "6478e2411932b41a5d6cb125f2f7f4bb5bf04f845db7af6360101975feba6059"
     },
     {
+      "path": "data/runs/run-b95df070.json",
+      "bytes": 51198,
+      "sha256": "08545399acfce88135f8f08d0a5791a05bf8129407d1fb5b9966611103f57182"
+    },
+    {
       "path": "data/runs/run-be91fd32.json",
       "bytes": 39086,
       "sha256": "4536697746bfabd41bbd90ce761019e921bf592c0936c3433c7522a8d5ea6cb2"
@@ -321,6 +396,11 @@
       "path": "data/runs/run-d6b613bb.json",
       "bytes": 36456,
       "sha256": "562a8151321ad1abfe4eea72f762afd076ef1dcb8950a3afd4f74f37bcfcd189"
+    },
+    {
+      "path": "data/runs/run-da109b40.json",
+      "bytes": 50646,
+      "sha256": "d14e561b32497ceefeeeb70b5f3401f5a742fa129146bd5c2ad5e234a0425614"
     },
     {
       "path": "data/runs/run-e4fbb092.json",
@@ -358,6 +438,11 @@
       "sha256": "0c5b2123db8e24838722543734573b0c7cac624f6cf0cb7f0e5c53c9365c0c40"
     },
     {
+      "path": "data/runs/run-f8003429.json",
+      "bytes": 56805,
+      "sha256": "1540314d5ddc174e1309b06d93f16b3c1867e7464f17028468c42da161e46a8f"
+    },
+    {
       "path": "data/runs/run-facbfb61.json",
       "bytes": 40973,
       "sha256": "56b1b953d04febae5df8a4aea72507ae18cadfc297ca2ace3128c0d5f12b17ca"
@@ -369,8 +454,8 @@
     },
     {
       "path": "docs/band_live_setup.md",
-      "bytes": 2763,
-      "sha256": "57be49bec77524e9b8500a632d0c84f041c1cf2e1786717eb03687d6bf28b687"
+      "bytes": 3856,
+      "sha256": "2d4bcc4e9e3af7a918d976dd99ccd19aef6649128329bebf2ca5fc62a12cfcda"
     },
     {
       "path": "docs/competitive_research.md",
@@ -384,18 +469,18 @@
     },
     {
       "path": "docs/demo_script.md",
-      "bytes": 2646,
-      "sha256": "66b0cf3edfe1a9d25a72550f8c139d7ac17de3c3424f84ac20695b37acb0015b"
+      "bytes": 2945,
+      "sha256": "fb58faeea58d355812d94baf997065c3b56f572a9591171223e54fb0ff7f18ef"
     },
     {
       "path": "docs/judging_map.md",
-      "bytes": 2240,
-      "sha256": "caa98ce8b32749450703cfe27e39c368c7b4e89fde0f0c38d2bd6ce9b03cee99"
+      "bytes": 4336,
+      "sha256": "9ab75031f3f91d788a9033d6bf0eb68de82c8817877bee987e5afde6a60e3219"
     },
     {
       "path": "docs/lablab_submission_form.md",
-      "bytes": 4035,
-      "sha256": "082dd89aec396a518bdfd5ed833f51ec5c80bfb4995a2cd18d1036cd48114e0d"
+      "bytes": 4878,
+      "sha256": "8f8d8b4936cf40678d29d46b7f5241b960b4045d535586475cca9b1f08485f20"
     },
     {
       "path": "docs/pitch_deck.md",
@@ -404,13 +489,13 @@
     },
     {
       "path": "docs/submission.md",
-      "bytes": 3255,
-      "sha256": "58d31d785268b8cc34e2afe47c1602345b0d4728b2a703676037bd8e9ac7d2be"
+      "bytes": 4334,
+      "sha256": "c020c4175155ef8dc5ff8f2b39f75d28a8c05a4125160e41855324572cf346fd"
     },
     {
       "path": "docs/submission_checklist.md",
-      "bytes": 2453,
-      "sha256": "d906f6834707789b33305830ea2924aea1cf864f086fec0d8ed1d00bc98e53fa"
+      "bytes": 2477,
+      "sha256": "9151804fefc74f1e333663e73047dbaf08dc9a4f1744ad44102ede21c441a0ac"
     },
     {
       "path": "output/playwright/procureguard-custom-final.png",
@@ -459,13 +544,13 @@
     },
     {
       "path": "output/submission/procureguard-evidence-bundle-latest.zip",
-      "bytes": 15547,
-      "sha256": "230ca9bfeff2fb967b2d8c85f866af2398ab18047cd567abaf3842b334adbf44"
+      "bytes": 18205,
+      "sha256": "411545dc39b98a492ed83f700e724aa6628a0e440e3a5dfbf159d81d6cb3c350"
     },
     {
       "path": "output/submission/procureguard-latest-report.md",
-      "bytes": 15516,
-      "sha256": "a37e55ea43a9bcc3d86bc3a09e9e54e1179b81bb6133328f5b4c8f3762d39dc3"
+      "bytes": 18933,
+      "sha256": "3a870f594c7454249fafbe9721f53a06d641419fe6fad357572779d042a30bfa"
     },
     {
       "path": "output/submission/procureguard-slides-preview.png",
@@ -474,8 +559,8 @@
     },
     {
       "path": "pyproject.toml",
-      "bytes": 583,
-      "sha256": "07a9d31a95c9de3d686574be7ec850d4950b0445ba2d55f709dd4a6ac69540ca"
+      "bytes": 612,
+      "sha256": "4fdf3f25dc0b532a2cba83c59f31c9b209869be3349a13e78ec2a60bff0eefc6"
     },
     {
       "path": "render.yaml",
@@ -494,8 +579,8 @@
     },
     {
       "path": "scripts/live_band_agent.py",
-      "bytes": 3166,
-      "sha256": "7162e7eeec5b7de7a523d6d1c7bcab613f40b087a3904f5c87063bfb0305b709"
+      "bytes": 7754,
+      "sha256": "61b1be13b4678ef6d236bee7e7cafca17b71bcd4d6f5ef3fae8ba3f0ea4fd5e1"
     },
     {
       "path": "scripts/register_band_agents.py",
@@ -509,13 +594,13 @@
     },
     {
       "path": "scripts/verify_submission.py",
-      "bytes": 4724,
-      "sha256": "b39475dc2c3f7de04fc4129de76a6219f2f322d480c461c9a2f45e6af6e65429"
+      "bytes": 5857,
+      "sha256": "15986ee4e7f789a86889fca089a8dea8bcb51ea49af324c3877d8af02eaab7e8"
     },
     {
       "path": "static/app.js",
-      "bytes": 21998,
-      "sha256": "a1e519c9c57c189879b3d8c079977fc9ed0e95894f96a2550c3e9931e266d6ff"
+      "bytes": 25030,
+      "sha256": "b14626c0119ddfe57b36752afbb00f656a61bed8b70d4d2b3b6784436a7535ad"
     },
     {
       "path": "static/assets/procureguard-cover.png",
@@ -529,8 +614,8 @@
     },
     {
       "path": "static/cover.html",
-      "bytes": 6329,
-      "sha256": "631f6c5754f364af544e5d02be69b1b41835ebf1fd710eee4471de5204a03a7a"
+      "bytes": 6338,
+      "sha256": "51a8cbc5d8eb6eab0876d4f471c699859d5980301d6460da28a0bf596e83030d"
     },
     {
       "path": "static/favicon.svg",
@@ -539,18 +624,18 @@
     },
     {
       "path": "static/index.html",
-      "bytes": 8607,
-      "sha256": "11c9b820127a096973604823e400d79700b14292f4dd3b5ae6ab754b8165e3bd"
+      "bytes": 8924,
+      "sha256": "ff5d185430aa6361a65db1bf6fff913a98426f747fb9b4025c11208c8a0b72b8"
     },
     {
       "path": "static/slides.html",
-      "bytes": 9177,
-      "sha256": "23aa024292d5676dfc1d5b30d4d8abeaee2ce624b091b62ffedad10df8ac6f60"
+      "bytes": 9168,
+      "sha256": "4468fa49718efc6fd2b1339480a6ab6db6250e47896c1aacab9709ef8b5f2332"
     },
     {
       "path": "static/styles.css",
-      "bytes": 14387,
-      "sha256": "9c7cc08c02d3f5bc6fcfe8d93a2da82dcb9aed65aab66b24f9c4ef361a579a20"
+      "bytes": 16446,
+      "sha256": "078c732f04d5d8c5782d10e4c743223123e8d7175976a8f8424324a9d4c78119"
     },
     {
       "path": "uv.lock",

@@ -2,39 +2,42 @@
 
 ## 30-Second Pitch
 
-ProcureGuard AI turns vendor approval into a collaborative Band room. Instead of one generic assistant making a black-box recommendation, eight AI agents coordinate like an enterprise review board: intake, vendor research, finance, security, legal, evidence stewardship, red-team review, and approval management. The result is a decision memo, human approval packet, and tamper-evident audit record of who reviewed what, what context was handed off, and which approval conditions remain.
+ProcureGuard turns vendor approval into a shared review room. Instead of one black-box recommendation, the request moves through intake, vendor research, finance, security, legal, evidence stewardship, red-team review, and approval management. The result is a decision memo, human approval packet, and audit record showing who reviewed what, what context was handed off, and which approval conditions remain.
 
 ## 3-Minute Demo
 
-1. Open the dashboard and choose the VectorCRM case.
-2. For the safest recording, enable Fast demo mode; leave it off when showing live AI/ML API calls.
-3. Run the workflow.
-4. Show the Band-room timeline:
-   - Coordinator starts the room.
-   - Four specialist agents are mentioned in parallel.
+1. Open the dashboard with `BAND_ENABLED=1` so the run executes on the real Band platform.
+2. Run the VectorCRM case.
+3. Open the **Live Band Proof** panel first and show:
+   - the "LIVE on app.band.ai" tag,
+   - the clickable Band room link,
+   - the count of real Band messages and task events (each carries a Band-issued ID).
+4. Open the Band room link in Band to show the same messages landing in the real platform.
+5. Walk the Band-room timeline:
+   - Coordinator opens the room and recruits its peers (real Agent API calls).
+   - Four specialist roles review in parallel.
    - Each specialist sends a structured handoff to Evidence Clerk.
    - Evidence Clerk creates the shared context packet.
    - Red Team Auditor challenges the packet before approval.
    - Approval Manager records the decision.
-5. Open the Red Team Challenge panel and show objections plus required revisions.
-6. Open the Coordination Handoff Map and show the routed @mention edges.
-7. Open Task State & Recruitment and show owners, status, and peer-routing records.
-8. Open Business Impact & Controls and show spend exposure, readiness, and blocked controls.
-9. Open Framework & Audit Proof and show the cross-framework profiles plus SHA-256 digest.
-10. Open the Judging Evidence panel and show the collaboration score.
-11. Open the human approval gate and show required signoffs.
-12. Open the decision memo, download the run report, and download the evidence bundle.
-13. Switch to Band live mode or show the Band recording where the same roles collaborate in a real Band room.
+6. Open a Specialist Handoff card and show the **per-finding evidence citations** grounded in real case fields.
+7. Open the Red Team Challenge panel and show the veto flipping approve -> escalate.
+8. Open the Coordination Handoff Map and show the routed @mention edges.
+9. Open Task State & Recruitment, Business Impact & Controls, and the SHA-256 audit record.
+10. Open the human approval gate, download the run report (includes the Band room ID + message IDs), and download the evidence bundle.
 
-## What Judges Should Notice
+Fast local mode (`Fast local mode` checkbox) is available as a quota-safe fallback if the provider or network is unavailable mid-recording; it keeps the full workflow rendering while honestly labeling the run as a local simulation.
 
+## What Reviewers Should Notice
+
+- The workflow runs on the **real Band platform**: real room, real message IDs, real task events, verifiable in Band itself.
 - Band-style collaboration is central to the workflow.
-- Agents exchange structured context before the final decision.
+- Review roles exchange structured context before the final decision.
 - The red-team review loop prevents a shallow one-pass approval.
 - @Mention routing makes the collaboration visible and explainable.
-- Task state and recruitment records prove the agents are coordinating work, not only chatting.
+- Task state and recruitment records show coordinated work, not only chat.
 - Business impact and controls connect the workflow to enterprise value, spend risk, and governance.
 - The exported report and audit seal turn chat into an enterprise record.
-- The evidence bundle gives judges the raw run JSON, report, and audit manifest.
+- The evidence bundle gives reviewers the raw run JSON, report, and audit manifest.
 - The workflow maps to real enterprise procurement, security, finance, and legal operations.
-- Fast demo mode keeps the presentation stable while the same app still supports live AI/ML API calls.
+- Fast local mode keeps the presentation stable while the same app still supports live provider calls.

@@ -16,3 +16,5 @@ data/runs/*.json
 node_modules/
 dist/
 .playwright-cli/
+.playwright-mcp/
+.claude/

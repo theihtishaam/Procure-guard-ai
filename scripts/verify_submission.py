@@ -18,8 +18,8 @@ CUSTOM_CASE = {
     "case_id": "case-verify-custom",
     "requester": "Jordan Lee",
     "department": "IT Operations",
-    "vendor_name": "Acme AI Ops",
-    "product": "AI incident triage assistant",
+    "vendor_name": "Acme Operations Platform",
+    "product": "Incident triage workspace",
     "requested_amount_usd": 68000,
     "renewal_or_new": "new",
     "business_need": "Reduce alert triage time and route incidents to the right owner before reliability review.",
@@ -59,6 +59,22 @@ def assert_run_shape(run: dict) -> None:
     assert len(routed_edges) >= 8
     if not run["challenge_review"]["cleared_to_decide"]:
         assert run["decision"]["decision"] == "escalate"
+    # Real-Band plumbing is present on every run (sim or live).
+    assert run["mode"] in {"band-live", "local-band-sim", "band-live-ready"}
+    assert "band_events" in run and "band_memories" in run
+    assert len(run["band_memories"]) >= 1  # shared context packet is stored as a Band memory
+    assert all("band_delivery" in message for message in run["messages"])
+    # Every specialist artifact must cite real case fields (audit-grade evidence).
+    valid_sources = {
+        "data_access", "integrations", "requested_amount_usd", "notes",
+        "timeline", "business_need", "product", "department", "vendor_name",
+        "renewal_or_new", "requester",
+    }
+    for artifact in run["artifacts"]:
+        assert artifact.get("citations"), f"{artifact['agent_name']} has no citations"
+        for citation in artifact["citations"]:
+            assert citation["source"] in valid_sources, citation["source"]
+            assert citation["claim"] and citation["evidence"]
 
 
 def main() -> None:
@@ -86,6 +102,8 @@ def main() -> None:
     assert "Business Impact" in report_response.text
     assert "Governance Control Matrix" in report_response.text
     assert "Audit Seal" in report_response.text
+    assert "Specialist Artifacts And Cited Evidence" in report_response.text
+    assert "Band Platform Proof" in report_response.text
 
     bundle_response = client.get(f"/api/workflows/{sample_run['run_id']}/bundle.zip")
     assert bundle_response.status_code == 200
@@ -96,7 +114,7 @@ def main() -> None:
     assert custom_response.status_code == 200, custom_response.text
     custom_run = custom_response.json()
     assert custom_run["provider"] == "heuristic"
-    assert custom_run["case"]["vendor_name"] == "Acme AI Ops"
+    assert custom_run["case"]["vendor_name"] == "Acme Operations Platform"
     assert_run_shape(custom_run)
 
     print(

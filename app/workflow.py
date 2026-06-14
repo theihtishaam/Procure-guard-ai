@@ -5,7 +5,7 @@ import hashlib
 import json
 
 from app.agents import AGENTS, SPECIALIST_AGENT_IDS, AgentRunner, agent_by_id
-from app.band_room import BandRoomSimulator
+from app.band_session import BandSession
 from app.config import get_settings
 from app.llm import AIMLAPIClient
 from app.models import (
@@ -34,23 +34,31 @@ class ProcureGuardWorkflow:
 
     async def run(self, case: VendorCase) -> WorkflowRun:
         participants = [agent.name for agent in AGENTS] + HUMAN_PARTICIPANTS
-        room = BandRoomSimulator(
+        role_to_name = {agent.agent_id: agent.name for agent in AGENTS}
+        session = BandSession(
+            settings=self.settings,
             room_name=f"ProcureGuard: {case.vendor_name} approval",
-            participants=participants,
+            participant_names=participants,
+            role_to_name=role_to_name,
+            subject_key=case.vendor_name,
         )
-        mode = "band-live-ready" if self.settings.band_enabled else "local-band-sim"
+        await session.open()
+        room = session
+        prior_reviews = await session.recall_memories("Intake Coordinator")
 
         workflow = WorkflowRun(
-            mode=mode,
+            mode=session.mode,  # type: ignore[arg-type]
             case=case,
-            room_name=room.room_name,
+            room_name=session.room_name,
+            band_room_id=session.room_id,
+            band_room_url=session.room_url,
             participants=participants,
             agent_profiles=build_agent_profiles(),
             human_participants=HUMAN_PARTICIPANTS,
             provider="aimlapi" if self.llm.enabled else "heuristic",
         )
 
-        room.send(
+        await room.send(
             "Intake Coordinator",
             (
                 f"Opening case {case.case_id} for {case.vendor_name}. "
@@ -65,9 +73,22 @@ class ProcureGuardWorkflow:
             },
         )
 
+        if prior_reviews:
+            await room.send(
+                "Intake Coordinator",
+                (
+                    f"@Evidence Clerk Agent Band memory shows {len(prior_reviews)} prior review(s) for "
+                    f"{case.vendor_name}. Recall that shared context before specialists re-review so we "
+                    "build on the last decision instead of starting cold."
+                ),
+                message_type="context",
+                payload={"prior_reviews": prior_reviews[:5], "band_action": "cross_session_memory_recall"},
+                mentions=["Evidence Clerk Agent"],
+            )
+
         artifacts = await self._run_specialists(case)
         for artifact in artifacts:
-            room.send(
+            await room.send(
                 artifact.agent_name,
                 f"@Evidence Clerk Agent Handoff complete. {artifact.summary}",
                 message_type="handoff",
@@ -75,7 +96,7 @@ class ProcureGuardWorkflow:
                 mentions=["Evidence Clerk Agent"],
             )
 
-        room.send(
+        await room.send(
             "Intake Coordinator",
             "@Evidence Clerk Agent Consolidate all specialist handoffs into one shared context packet for decision review.",
             message_type="event",
@@ -83,7 +104,18 @@ class ProcureGuardWorkflow:
             mentions=["Evidence Clerk Agent"],
         )
         context_packet = await self.runner.run_context_packet(case, artifacts)
-        room.send(
+        await room.memory(
+            "Evidence Clerk Agent",
+            content=(
+                f"Shared context packet {context_packet.packet_id} for {case.vendor_name}. "
+                f"Readiness {context_packet.readiness_score}/100. {context_packet.summary} "
+                f"Consensus: {'; '.join(context_packet.consensus_points[:3])}. "
+                f"Open questions: {'; '.join(context_packet.unresolved_questions[:3])}."
+            ),
+            thought="Persist consolidated specialist findings as shared cross-agent memory so the decision uses one source of truth.",
+            tags=["procureguard", "context-packet", case.case_id],
+        )
+        await room.send(
             "Evidence Clerk Agent",
             (
                 f"@Red Team Auditor Agent Shared context packet {context_packet.packet_id} is ready for adversarial review. "
@@ -95,7 +127,7 @@ class ProcureGuardWorkflow:
         )
         challenge_review = await self.runner.run_challenge_review(case, artifacts, context_packet)
         if challenge_review.veto_level != "none":
-            room.send(
+            await room.send(
                 "Red Team Auditor Agent",
                 (
                     "@Security Compliance Agent @Legal Policy Agent Challenge issued before approval. "
@@ -105,21 +137,21 @@ class ProcureGuardWorkflow:
                 payload={"challenge_review": challenge_review.model_dump(), "loop": "mitigation_request"},
                 mentions=["Security Compliance Agent", "Legal Policy Agent"],
             )
-            room.send(
+            await room.send(
                 "Security Compliance Agent",
                 "@Red Team Auditor Agent Mitigation acknowledged: production access should wait for SOC 2 evidence, SSO, logging, and scoped roles.",
                 message_type="challenge",
                 payload={"mitigation": "security controls acknowledged"},
                 mentions=["Red Team Auditor Agent"],
             )
-            room.send(
+            await room.send(
                 "Legal Policy Agent",
                 "@Red Team Auditor Agent Mitigation acknowledged: DPA, subprocessors, retention, and audit rights must be cleared before purchase order.",
                 message_type="challenge",
                 payload={"mitigation": "legal controls acknowledged"},
                 mentions=["Red Team Auditor Agent"],
             )
-        room.send(
+        await room.send(
             "Red Team Auditor Agent",
             (
                 f"@Approval Manager Agent Red-team review complete: {challenge_review.veto_level}. "
@@ -129,7 +161,7 @@ class ProcureGuardWorkflow:
             payload={"challenge_review": challenge_review.model_dump(), "loop": "decision_handoff"},
             mentions=["Approval Manager Agent"],
         )
-        room.send(
+        await room.send(
             "Intake Coordinator",
             "@Approval Manager Agent Use the shared context packet, source artifacts, and red-team challenge to synthesize a decision memo with conditions.",
             message_type="event",
@@ -141,15 +173,16 @@ class ProcureGuardWorkflow:
             mentions=["Approval Manager Agent"],
         )
 
+        rehydrated = await room.rehydrate_context("Approval Manager Agent")
         decision = await self.runner.run_approval(case, artifacts, context_packet, challenge_review)
-        room.send(
+        await room.send(
             "Approval Manager Agent",
             f"Decision recorded: {decision.decision.replace('_', ' ')}. {decision.executive_summary}",
             message_type="decision",
-            payload={"decision": decision.model_dump()},
+            payload={"decision": decision.model_dump(), "context_messages_rehydrated": rehydrated},
         )
         human_gate = self.runner.build_human_gate(case, decision, context_packet, challenge_review)
-        room.send(
+        await room.send(
             "Approval Manager Agent",
             (
                 f"@Human Procurement Lead Human gate status: {human_gate.gate_status}. "
@@ -159,7 +192,7 @@ class ProcureGuardWorkflow:
             payload={"human_gate": human_gate.model_dump()},
             mentions=["Human Procurement Lead"],
         )
-        room.send(
+        await room.send(
             "Human Procurement Lead",
             "Acknowledged. Approval packet is ready for leadership review after listed conditions are cleared.",
             message_type="approval_gate",
@@ -178,21 +211,27 @@ class ProcureGuardWorkflow:
         workflow.collaboration_evidence = build_collaboration_evidence(workflow)
         workflow.collaboration_score = score_collaboration(workflow.collaboration_evidence)
         workflow.audit_seal = build_audit_seal(workflow)
-        room.send(
+        await room.send(
             "Evidence Clerk Agent",
             f"Audit seal generated with SHA-256 digest {workflow.audit_seal.digest[:16]}... for the decision packet.",
             message_type="audit",
             payload={"audit_seal": workflow.audit_seal.model_dump(mode="json")},
         )
-        room.send(
+        await room.send(
             "Intake Coordinator",
             "Workflow closed with a complete Band-room audit trail, red-team review, audit seal, and approval memo.",
             message_type="event",
             payload={"status": "closed"},
         )
         workflow.messages = room.messages
+        workflow.band_events = room.events
+        workflow.band_memories = room.memories
+        workflow.prior_reviews_recalled = len(prior_reviews)
+        workflow.band_room_id = room.room_id
+        workflow.band_room_url = room.room_url
         workflow.collaboration_evidence = build_collaboration_evidence(workflow)
         workflow.collaboration_score = score_collaboration(workflow.collaboration_evidence)
+        await room.close()
         return workflow
 
     async def _run_specialists(self, case: VendorCase) -> list[AgentArtifact]:

@@ -39,8 +39,8 @@ async function init() {
   state.cases = cases;
   state.activeCase = cases[0];
   $("health").textContent = health.live_llm_configured
-    ? "AI/ML API connected. Band live mode is " + (health.band_enabled ? "enabled." : "ready for credentials.")
-    : "Local deterministic mode. Add AIMLAPI_API_KEY for live model calls.";
+    ? "Live model provider connected. Band live mode is " + (health.band_enabled ? "enabled." : "ready for credentials.")
+    : "Local review mode. Add AIMLAPI_API_KEY for live provider calls.";
   renderCasePicker();
   renderCase(state.activeCase);
   renderParticipants([
@@ -105,7 +105,7 @@ async function runCustomCase() {
 
 function buildCustomCase() {
   const vendor = $("customVendor").value.trim() || "Custom Vendor";
-  const product = $("customProduct").value.trim() || "Enterprise AI tool";
+  const product = $("customProduct").value.trim() || "Enterprise workflow tool";
   return {
     case_id: `case-custom-${Date.now()}`,
     requester: $("customRequester").value.trim() || "Procurement requester",
@@ -136,8 +136,8 @@ async function runCase(payload) {
   customButton.disabled = true;
   $("reportButton").disabled = true;
   $("bundleButton").disabled = true;
-  button.textContent = "Agents Reviewing...";
-  customButton.textContent = "Agents Reviewing...";
+  button.textContent = "Reviewing...";
+  customButton.textContent = "Reviewing...";
   $("timeline").className = "timeline empty-state";
   $("timeline").textContent = "Review in progress. Specialist agents are preparing handoffs.";
   $("messageCount").textContent = "0 messages";
@@ -157,8 +157,8 @@ async function runCase(payload) {
   `;
   $("contextPacket").className = "context-packet empty-state";
   $("contextPacket").textContent = "Evidence Clerk is waiting for specialist handoffs.";
-  $("judgingEvidence").className = "judging-list empty-state";
-  $("judgingEvidence").textContent = "Collaboration evidence will appear when the room closes.";
+  $("reviewEvidence").className = "review-list empty-state";
+  $("reviewEvidence").textContent = "Coordination evidence will appear when the room closes.";
   $("humanGate").className = "human-gate empty-state";
   $("humanGate").textContent = "Approval gate pending.";
   $("challengeBadge").textContent = "Pending";
@@ -166,10 +166,13 @@ async function runCase(payload) {
   $("challengeReview").textContent = "Red Team Auditor is waiting for the shared context packet.";
   $("auditBadge").textContent = "Pending";
   $("technicalProof").className = "technical-proof empty-state";
-  $("technicalProof").textContent = "Framework profiles and audit seal pending.";
+  $("technicalProof").textContent = "Framework profile and audit seal pending.";
+  $("bandModeBadge").textContent = "Pending";
+  $("bandProof").className = "band-proof empty-state";
+  $("bandProof").textContent = "Connecting the workflow to the Band platform.";
   $("handoffBadge").textContent = "Pending";
   $("handoffMap").className = "handoff-map empty-state";
-  $("handoffMap").textContent = "Agents are establishing the handoff path.";
+  $("handoffMap").textContent = "The review room is establishing the handoff path.";
   $("taskStateBadge").textContent = "Pending";
   $("taskStateBoard").className = "task-state-board empty-state";
   $("taskStateBoard").textContent = "Task ownership and status will appear after agents coordinate.";
@@ -195,7 +198,7 @@ async function runCase(payload) {
   } finally {
     button.disabled = false;
     customButton.disabled = false;
-    button.textContent = "Run Agent Review";
+    button.textContent = "Run Review";
     customButton.textContent = "Run Custom Review";
   }
 }
@@ -213,7 +216,7 @@ function downloadBundle() {
 function renderRun(run) {
   renderParticipants(run.participants);
   $("providerBadge").textContent = `Provider: ${run.provider}`;
-  $("modeBadge").textContent = run.mode === "band-live-ready" ? "Band live ready" : "Local Band sim";
+  $("modeBadge").textContent = modeLabel(run.mode);
   $("messageCount").textContent = `${run.messages.length} messages`;
   $("artifactCount").textContent = `${run.artifacts.length} artifacts`;
   $("contextBadge").textContent = run.context_packet ? `${run.context_packet.readiness_score}/100 readiness` : "Missing";
@@ -222,6 +225,7 @@ function renderRun(run) {
   $("challengeBadge").textContent = run.challenge_review ? run.challenge_review.veto_level : "Missing";
   $("auditBadge").textContent = run.audit_seal ? `${run.audit_seal.digest.slice(0, 16)}...` : "Missing";
   renderEvidenceStrip(run);
+  renderBandProof(run);
   renderTimeline(run.messages);
   renderHandoffMap(run.messages);
   renderTaskState(run.task_state || [], run.peer_recruitment || []);
@@ -230,7 +234,7 @@ function renderRun(run) {
   renderContextPacket(run.context_packet);
   renderChallengeReview(run.challenge_review);
   renderTechnicalProof(run.agent_profiles || [], run.audit_seal, run.provider);
-  renderJudgingEvidence(run.collaboration_evidence || []);
+  renderReviewEvidence(run.collaboration_evidence || []);
   renderHumanGate(run.human_gate);
   renderDecision(run.decision);
 }
@@ -372,6 +376,47 @@ function renderHandoffMap(messages) {
     .join("");
 }
 
+function modeLabel(mode) {
+  if (mode === "band-live") return "Band live (real platform)";
+  if (mode === "band-live-ready") return "Band live ready";
+  return "Local Band sim";
+}
+
+function renderBandProof(run) {
+  const live = run.mode === "band-live";
+  const messages = run.messages || [];
+  const realMessages = messages.filter((m) => m.band_delivery === "message" && m.band_message_id);
+  const realEvents = run.band_events || [];
+  const memories = run.band_memories || [];
+  const liveMemories = memories.filter((m) => m.memory_id);
+
+  const roomLink = run.band_room_url
+    ? `<a href="${esc(run.band_room_url)}" target="_blank" rel="noopener">${esc(run.band_room_id)}</a>`
+    : (run.band_room_id ? esc(run.band_room_id) : "Local simulation room");
+
+  const status = live
+    ? `<mark class="band-live-tag">LIVE on app.band.ai</mark>`
+    : `<mark class="band-sim-tag">Local Band simulation</mark>`;
+
+  const sampleId = realMessages.length ? realMessages[0].band_message_id : null;
+
+  $("bandProof").className = "band-proof";
+  $("bandProof").innerHTML = `
+    <div class="band-proof-head">
+      ${status}
+      <div class="band-room-link"><span>Band room</span><strong>${roomLink}</strong></div>
+    </div>
+    <div class="band-proof-grid">
+      <div class="band-stat"><span>Routed messages</span><strong>${realMessages.length}</strong><small>real Band message IDs</small></div>
+      <div class="band-stat"><span>Task events</span><strong>${realEvents.length}</strong><small>Agent API events</small></div>
+      <div class="band-stat"><span>Shared memories</span><strong>${liveMemories.length}</strong><small>cross-agent context</small></div>
+      <div class="band-stat"><span>Participants</span><strong>${(run.participants || []).length}</strong><small>in the room</small></div>
+    </div>
+    ${sampleId ? `<small class="band-sample">Example Band message ID: <code>${esc(sampleId)}</code></small>` : ""}
+    ${!live ? `<small class="band-note">Simulation mode keeps the demo reliable. Set BAND_ENABLED=1 with registered agents in agent_config.yaml to run on the real platform.</small>` : ""}
+  `;
+}
+
 function renderEvidenceStrip(run) {
   const packet = run.context_packet;
   const gate = run.human_gate;
@@ -396,6 +441,10 @@ function renderTimeline(messages) {
       const mentions = message.mentions?.length
         ? `<div class="mentions">Routed to: ${message.mentions.map(esc).join(", ")}</div>`
         : "";
+      const bandTag =
+        message.band_message_id && message.band_delivery !== "sim"
+          ? `<div class="band-tag">Band ${esc(message.band_delivery)} · ${esc(message.band_message_id.slice(0, 12))}</div>`
+          : "";
       return `
         <article class="message ${esc(message.message_type)}">
           <div class="message-meta">
@@ -404,6 +453,7 @@ function renderTimeline(messages) {
           </div>
           <p>${esc(message.content)}</p>
           ${mentions}
+          ${bandTag}
         </article>
       `;
     })
@@ -413,7 +463,18 @@ function renderTimeline(messages) {
 function renderArtifacts(artifacts) {
   $("artifacts").innerHTML = artifacts
     .map(
-      (artifact) => `
+      (artifact) => {
+        const citations = (artifact.citations || [])
+          .slice(0, 3)
+          .map(
+            (cite) =>
+              `<li><span class="cite-claim">${esc(cite.claim)}</span><small><code>${esc(cite.source)}</code>: ${esc(cite.evidence)}</small></li>`,
+          )
+          .join("");
+        const citeBlock = citations
+          ? `<div class="artifact-citations"><small>Evidence citations</small><ul class="cite-list">${citations}</ul></div>`
+          : "";
+        return `
       <article class="artifact">
         <span>Risk ${artifact.risk_score}/100 - Confidence ${Math.round(artifact.confidence * 100)}%</span>
         <h4>${esc(artifact.agent_name)}</h4>
@@ -421,8 +482,10 @@ function renderArtifacts(artifacts) {
         <ul>
           ${(artifact.findings || []).slice(0, 3).map((item) => `<li>${esc(item)}</li>`).join("")}
         </ul>
+        ${citeBlock}
       </article>
-    `,
+    `;
+      },
     )
     .join("");
 }
@@ -487,7 +550,7 @@ function renderChallengeReview(review) {
 function renderTechnicalProof(profiles, auditSeal, provider) {
   if (!profiles.length && !auditSeal) {
     $("technicalProof").className = "technical-proof empty-state";
-    $("technicalProof").textContent = "No technical proof recorded.";
+    $("technicalProof").textContent = "No audit record captured.";
     return;
   }
   $("technicalProof").className = "technical-proof";
@@ -517,17 +580,17 @@ function renderTechnicalProof(profiles, auditSeal, provider) {
   `;
 }
 
-function renderJudgingEvidence(items) {
+function renderReviewEvidence(items) {
   if (!items.length) {
-    $("judgingEvidence").className = "judging-list empty-state";
-    $("judgingEvidence").textContent = "No judging evidence recorded.";
+    $("reviewEvidence").className = "review-list empty-state";
+    $("reviewEvidence").textContent = "No coordination evidence recorded.";
     return;
   }
-  $("judgingEvidence").className = "judging-list";
-  $("judgingEvidence").innerHTML = items
+  $("reviewEvidence").className = "review-list";
+  $("reviewEvidence").innerHTML = items
     .map(
       (item) => `
-      <article class="judge-item ${esc(item.status)}">
+      <article class="evidence-item ${esc(item.status)}">
         <strong>${esc(item.label)}</strong>
         <span>${esc(item.status)}</span>
         <p>${esc(item.detail)}</p>

@@ -25,22 +25,22 @@
 - Public repository: https://github.com/theihtisham/procureguard-ai-band-agents
 - Demo video artifact: `output/submission/procureguard-demo.webm`
 
-## Demo Proof To Show
+## Demo Flow To Show
 
-- Agent Board with 8 AI agents plus Human Procurement Lead.
-- Band Room Timeline with @mentions and 17-message audit trail.
+- Review Team with the specialist roles plus Human Procurement Lead.
+- Band Room Timeline with routed messages and 17-message audit trail.
 - Shared Context Packet from Evidence Clerk.
 - Red Team Challenge with cleared/not-cleared state.
 - Decision Memo with escalation guardrail.
 - Human Approval Gate with blocked or ready status.
-- Coordination Handoff Map showing routed @mention edges.
+- Coordination Handoff Map showing routed handoffs.
 - Task State & Recruitment board showing owners, statuses, evidence references, and peer routing.
 - Business Impact & Controls panel showing cycle-time value, spend exposure, readiness, gate outcome, and control status.
-- Framework & Audit Proof with SHA-256 seal.
+- Framework & Audit Record with SHA-256 seal.
 - Download Run Report export.
 - Download Evidence Bundle export.
-- Custom Case panel for a judge-entered vendor.
-- Fast demo mode for reliable recording and quota-safe rehearsals.
+- Custom Case panel for a reviewer-entered vendor.
+- Fast local mode for reliable recording and quota-safe rehearsals.
 
 ## Final Local Commands
 
@@ -58,4 +58,4 @@ Before final submission, record a real Band room using `docs/band_live_setup.md`
 uv run python scripts/register_band_agents.py --confirm-create
 ```
 
-The local simulator is useful for reliable product demo, but the video should include proof that real Band Remote Agents can join a room and hand off work.
+The local simulator is useful for a reliable product walkthrough, but the final video should include a real Band Remote Agent room so the integration path is visible.

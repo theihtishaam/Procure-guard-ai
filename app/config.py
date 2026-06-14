@@ -28,6 +28,7 @@ class Settings(BaseModel):
     enable_live_llm: bool = True
     band_enabled: bool = False
     band_app_url: str = "https://app.band.ai"
+    band_user_api_key: str | None = Field(default=None)
 
 
 @lru_cache
@@ -44,4 +45,5 @@ def get_settings() -> Settings:
         enable_live_llm=os.getenv("ENABLE_LIVE_LLM", "1").strip() not in {"0", "false", "False", "no"},
         band_enabled=os.getenv("BAND_ENABLED", "0").strip() in {"1", "true", "True", "yes"},
         band_app_url=os.getenv("BAND_APP_URL", "https://app.band.ai").rstrip("/"),
+        band_user_api_key=os.getenv("BAND_USER_API_KEY"),
     )

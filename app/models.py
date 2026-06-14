@@ -25,6 +25,12 @@ class VendorCase(BaseModel):
     notes: str = ""
 
 
+class FindingCitation(BaseModel):
+    claim: str
+    source: str
+    evidence: str
+
+
 class AgentArtifact(BaseModel):
     agent_id: str
     agent_name: str
@@ -35,6 +41,7 @@ class AgentArtifact(BaseModel):
     blockers: list[str] = Field(default_factory=list)
     recommended_next: str
     structured_context: dict[str, Any] = Field(default_factory=dict)
+    citations: list[FindingCitation] = Field(default_factory=list)
 
 
 class AgentProfile(BaseModel):
@@ -158,14 +165,37 @@ class RoomMessage(BaseModel):
         "audit",
     ] = "chat"
     payload: dict[str, Any] = Field(default_factory=dict)
+    band_message_id: str | None = None
+    band_recipients: list[dict[str, Any]] = Field(default_factory=list)
+    band_delivery: Literal["message", "event", "sim"] = "sim"
+
+
+class BandEventRecord(BaseModel):
+    event_id: str | None = None
+    sender: str
+    event_type: Literal["tool_call", "tool_result", "thought", "error", "task"]
+    content: str
+
+
+class BandMemoryRecord(BaseModel):
+    memory_id: str | None = None
+    author: str
+    subject_id: str
+    summary: str
+    tags: list[str] = Field(default_factory=list)
 
 
 class WorkflowRun(BaseModel):
     run_id: str = Field(default_factory=lambda: f"run-{uuid4().hex[:8]}")
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
-    mode: Literal["local-band-sim", "band-live-ready"] = "local-band-sim"
+    mode: Literal["band-live", "local-band-sim", "band-live-ready"] = "local-band-sim"
     case: VendorCase
     room_name: str
+    band_room_id: str | None = None
+    band_room_url: str | None = None
+    band_events: list[BandEventRecord] = Field(default_factory=list)
+    band_memories: list[BandMemoryRecord] = Field(default_factory=list)
+    prior_reviews_recalled: int = 0
     participants: list[str]
     agent_profiles: list[AgentProfile] = Field(default_factory=list)
     human_participants: list[str] = Field(default_factory=list)

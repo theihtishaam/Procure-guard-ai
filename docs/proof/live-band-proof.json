@@ -1,0 +1,18 @@
+{
+  "captured_at": "2026-06-14T13:02:57.269437+00:00",
+  "mode": "band-live",
+  "band_room_id": "dfafa2fd-7653-4741-b232-3c8a951c6c95",
+  "band_room_url": "https://app.band.ai/chats/dfafa2fd-7653-4741-b232-3c8a951c6c95",
+  "real_band_messages": 10,
+  "real_band_events": 7,
+  "sample_message_ids": [
+    "bee55543-081b-4219-8d5d-4ca7975482d1",
+    "cdea0ae3-652c-47e8-91da-6baaf9c4b7c2",
+    "dee7b866-205a-4c2a-ab07-58242cf8457d",
+    "a4ae0067-51ca-492d-958d-0df52c471087",
+    "0cbce136-50e1-43f6-ab86-6d418c461cf9"
+  ],
+  "decision": "escalate",
+  "collaboration_score": 100,
+  "note": "Memory API is Enterprise-gated on the BANDHACK26 Pro plan; shared context is exchanged via real Band messages. Memory degrades gracefully."
+}

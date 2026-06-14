@@ -8,13 +8,13 @@ ProcureGuard AI
 
 ## Short Description
 
-ProcureGuard AI is a Band-powered vendor approval room where eight AI agents coordinate procurement, finance, security, legal, evidence consolidation, adversarial review, and approval management to produce an auditable enterprise decision with human signoff.
+ProcureGuard is a vendor approval workspace where procurement, finance, security, legal, and approval roles review the same request in a shared Band room, exchange context, challenge gaps, and produce an auditable decision packet for human signoff.
 
 ## Long Description
 
-ProcureGuard AI turns enterprise vendor approval into a collaborative Band room. An Intake Coordinator opens a purchase request, recruits specialized peer agents with @mentions, and preserves a shared room record. Vendor Research, Finance ROI, Security Compliance, and Legal Policy agents review the case in parallel, then hand off structured artifacts to the Evidence Clerk Agent. The Evidence Clerk creates a shared context packet with consensus, unresolved questions, readiness score, and state. A Red Team Auditor challenges the packet before approval, routes objections back to Security and Legal when needed, and hands the reviewed packet to the Approval Manager. The Approval Manager synthesizes the full audit trail into an approve, conditional approve, reject, or escalate decision, then routes the final packet to a Human Procurement Lead.
+ProcureGuard turns enterprise vendor approval into a shared Band review room — and it runs on the real Band platform, not a simulation. The Intake Coordinator agent creates a real Band chat room with its own agent key, recruits its sibling agents as room participants, and routes every handoff as a real Band message with @mention routing (each message returns a Band-issued UUID). Vendor Research, Finance ROI, Security Compliance, and Legal Policy review the case in parallel and hand off structured findings — each grounded in cited evidence from real case fields — to the Evidence Clerk. The Evidence Clerk builds one shared context packet with consensus, unresolved questions, and a readiness score. A Red Team Auditor challenges the packet before approval and can issue a binding veto that deterministically forces escalation, routing objections back to Security and Legal. The Approval Manager synthesizes the audit trail into an approve, conditional approve, reject, or escalate recommendation, then routes the packet to a Human Procurement Lead.
 
-The dashboard makes the collaboration visible: Band room timeline, coordination handoff map, task state and recruitment ledger, business impact metrics, governance control matrix, shared context packet, red-team challenge, human gate, framework profiles, SHA-256 audit seal, downloadable Markdown report, and evidence bundle ZIP. Judges can run the prepared VectorCRM case or enter a custom vendor request to see the same multi-agent governance workflow replay on new inputs.
+The agents are genuinely cross-framework: roles run on LangGraph, CrewAI, Pydantic AI, and Anthropic adapters, all collaborating in one Band room — Band's signature capability. The dashboard makes the review visible: a Live Band Proof panel with the real room link, message IDs, and event counts; room timeline; coordination handoff map; task state and recruitment ledger; business impact metrics; governance controls; shared context packet; red-team challenge; human gate; framework profiles; SHA-256 audit seal; downloadable Markdown report; and evidence bundle ZIP. Reviewers can run the prepared VectorCRM case or enter a custom vendor request to replay the same governance workflow on new inputs. When Band credentials are absent, a labelled local simulator keeps the demo reliable without ever falsely claiming a live run.
 
 This is designed for Track 1: Internal Enterprise Workflows. It addresses a real enterprise problem: vendor approvals often stall because procurement, finance, security, legal, and operations work in separate tools. ProcureGuard compresses that process into one auditable decision room while improving risk visibility, control ownership, human review, and leadership-ready reporting.
 
@@ -28,16 +28,16 @@ Track 1: Internal Enterprise Workflows
 
 ## Main Demo Flow
 
-1. Open the dashboard.
-2. Enable Fast demo mode for reliable recording.
-3. Run the VectorCRM case.
-4. Show the Coordination Handoff Map with routed @mention edges.
-5. Show Task State & Recruitment with owners, status, and peer routing.
-6. Show Business Impact & Controls with spend exposure, readiness, gate outcome, and blocked controls.
-7. Show Shared Context Packet and Red Team Challenge.
-8. Show Framework & Audit Proof with SHA-256 digest.
-9. Download the run report and evidence bundle.
-10. Include real Band Remote Agent room proof from `docs/band_live_setup.md` in the final video.
+1. Open the dashboard (Band live mode enabled).
+2. Run the VectorCRM case.
+3. Show the Live Band Proof panel: the "LIVE on app.band.ai" tag, the clickable real room link, real Band message IDs, and task-event counts.
+4. Open the real Band room in a new tab to show the same conversation on app.band.ai.
+5. Show the Coordination Handoff Map with routed @mention edges.
+6. Show Specialist Handoffs with per-finding cited evidence grounded in real case fields.
+7. Show Task State & Recruitment, Business Impact & Controls (spend exposure, readiness, blocked controls).
+8. Show the Shared Context Packet and the Red Team Challenge issuing a binding veto that flips the decision to escalate.
+9. Show the Human Approval Gate and the Framework & Audit Record with the SHA-256 digest.
+10. Download the run report and evidence bundle; show `docs/proof/` committed proof of the live run.
 
 ## Required URLs To Fill Before Submission
 

@@ -1,4 +1,4 @@
-# ProcureGuard AI
+# ProcureGuard
 
 ProcureGuard is a vendor approval workspace for teams that need procurement, finance, security, legal, and leadership review in one place.
 
@@ -12,7 +12,7 @@ Instead of sending a purchase request through separate email threads and spreads
 - Runs a red-team review before the approval decision is finalized.
 - Produces a decision memo with conditions, blockers, risk register, signoffs, and human approval status.
 - Exports a Markdown report and evidence bundle for attachment to a procurement ticket.
-- Supports a fast deterministic demo mode, live LLM-backed runs, and a Band Remote Agent setup path.
+- Supports a fast local review mode, live provider-backed runs, and a Band Remote Agent setup path.
 
 ## Workflow
 
@@ -35,11 +35,18 @@ Instead of sending a purchase request through separate email threads and spreads
 - Approval Manager Agent
 - Human Procurement Lead
 
-## Screenshots
+## Live Band Proof
 
-![ProcureGuard dashboard with room timeline and decision evidence](output/playwright/procureguard-dashboard-final.png)
+ProcureGuard runs on the real Band platform (`app.band.ai`), not a simulator. A recorded live run created a real Band room, delivered routed `@mention` messages and task events with Band-issued UUIDs, and the messages were read back through Band's own context API. See [docs/proof/](docs/proof/) for the captured room ID, message IDs, and run JSON.
 
-[Demo video](output/submission/procureguard-demo.webm)
+![Live Band Proof panel showing LIVE on app.band.ai with real room and message IDs](output/playwright/procureguard-live-band-proof.png)
+
+![ProcureGuard live dashboard with room timeline and decision evidence](output/playwright/procureguard-live-dashboard.png)
+
+## Screenshots And Video
+
+- Live Band walkthrough video: `output/submission/procureguard-live-band-walkthrough.webm`
+- Earlier simulator walkthrough: `output/submission/procureguard-demo.webm`
 
 | Handoff map | Task state |
 | --- | --- |
@@ -87,13 +94,26 @@ AIMLAPI_MODEL_FAST=gpt-4o-mini
 ENABLE_LIVE_LLM=1
 ```
 
-When `ENABLE_LIVE_LLM=0`, fast demo mode is selected, or the provider is unavailable, the app uses deterministic local role outputs so the review flow still works.
+When `ENABLE_LIVE_LLM=0`, fast local mode is selected, or the provider is unavailable, the app uses deterministic local role outputs so the review flow still works.
 
 Secret files such as `.env.local` and generated Band credentials are intentionally excluded from git.
 
-## Band Live Mode
+## Band Integration
 
-The local app includes a Band-style room simulator for reliable demos. For live Band proof, register the remote roles and write their credentials to `agent_config.yaml`:
+Band is the actual coordination layer, not a wrapper. In live mode the workflow:
+
+- creates a real Band chat room through the Human API,
+- adds every registered agent as a room participant,
+- posts routed handoffs as real Band messages (each with a real Band message ID and routed recipients),
+- emits status and decisions as real Band events (`task` type),
+- stores the shared context packet as a real cross-agent Band memory,
+- rehydrates room context through the Band Agent API before the decision.
+
+The eight roles run as genuinely cross-framework Band Remote Agents — LangGraph, CrewAI, Pydantic AI, and Anthropic adapters from the `thenvoi` SDK — all collaborating in one room. This is Band's signature capability: agents from different frameworks discover each other and coordinate without hardcoded wiring.
+
+A local Band-room simulator with identical room and handoff semantics is included so the dashboard and evidence trail always render for a reliable demo, even before credentials are added. The dashboard labels which mode produced each run.
+
+### Enable live Band
 
 ```powershell
 uv run python scripts/register_band_agents.py --confirm-create

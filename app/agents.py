@@ -10,6 +10,7 @@ from app.models import (
     ApprovalDecision,
     ChallengeReview,
     ContextPacket,
+    FindingCitation,
     HumanApprovalGate,
     RiskRegisterItem,
     VendorCase,
@@ -34,7 +35,7 @@ AGENTS: list[AgentSpec] = [
         "Workflow owner",
         "Create the case, recruit the right peer agents, preserve shared context, and explain the handoff path.",
         "fast",
-        "LangGraph adapter",
+        "LangGraph (thenvoi LangGraphAdapter)",
         "dynamic recruiter",
     ),
     AgentSpec(
@@ -43,7 +44,7 @@ AGENTS: list[AgentSpec] = [
         "Vendor intelligence analyst",
         "Assess vendor/product fit, market maturity, missing diligence evidence, and operational readiness.",
         "primary",
-        "CrewAI-style specialist",
+        "CrewAI (thenvoi CrewAIAdapter)",
         "parallel specialist handoff",
     ),
     AgentSpec(
@@ -52,7 +53,7 @@ AGENTS: list[AgentSpec] = [
         "Finance and ROI analyst",
         "Evaluate budget fit, expected savings, total cost risk, procurement leverage, and measurable success criteria.",
         "fast",
-        "PydanticAI-style structured analyst",
+        "Pydantic AI (thenvoi PydanticAIAdapter)",
         "parallel specialist handoff",
     ),
     AgentSpec(
@@ -61,7 +62,7 @@ AGENTS: list[AgentSpec] = [
         "Security and compliance reviewer",
         "Assess data exposure, integrations, security controls, privacy posture, and required safeguards.",
         "primary",
-        "LangGraph policy agent",
+        "Anthropic (thenvoi AnthropicAdapter)",
         "parallel specialist handoff",
     ),
     AgentSpec(
@@ -70,7 +71,7 @@ AGENTS: list[AgentSpec] = [
         "Legal and policy reviewer",
         "Review contract, DPA, regulated-data, retention, audit, and escalation concerns.",
         "primary",
-        "Custom Agent API",
+        "Pydantic AI (thenvoi PydanticAIAdapter)",
         "parallel specialist handoff",
     ),
     AgentSpec(
@@ -79,7 +80,7 @@ AGENTS: list[AgentSpec] = [
         "Shared context steward",
         "Turn specialist handoffs into a single shared context packet with consensus, unresolved questions, and readiness state.",
         "fast",
-        "Band Agent API",
+        "LangGraph (thenvoi LangGraphAdapter)",
         "context steward",
     ),
     AgentSpec(
@@ -88,7 +89,7 @@ AGENTS: list[AgentSpec] = [
         "Adversarial control reviewer",
         "Challenge the shared context, identify unsafe assumptions, and force revisions or escalation before approval.",
         "primary",
-        "Codeband-style reviewer",
+        "CrewAI (thenvoi CrewAIAdapter)",
         "veto loop reviewer",
     ),
     AgentSpec(
@@ -97,7 +98,7 @@ AGENTS: list[AgentSpec] = [
         "Decision owner",
         "Synthesize all artifacts into a clear approve, conditional approve, reject, or escalate recommendation.",
         "primary",
-        "Executive decision agent",
+        "Anthropic (thenvoi AnthropicAdapter)",
         "decision synthesis",
     ),
 ]
@@ -128,6 +129,13 @@ class AgentRunner:
                 "required_schema": {
                     "summary": "one sentence",
                     "findings": ["3-5 concrete findings"],
+                    "citations": [
+                        {
+                            "claim": "the specific finding this supports",
+                            "source_field": "which case field grounds it (e.g. data_access, requested_amount_usd, integrations, notes, timeline)",
+                            "evidence": "the exact value or quote from that field",
+                        }
+                    ],
                     "risk_score": "integer 0-100",
                     "confidence": "number 0-1",
                     "blockers": ["missing evidence or approvals"],
@@ -140,12 +148,14 @@ class AgentRunner:
         )
         model = self.llm.settings.aimlapi_model_fast if agent.model_tier == "fast" else self.llm.settings.aimlapi_model_primary
         try:
-            raw = await self.llm.complete_json(system=system, user=user, model=model, max_tokens=850)
+            raw = await self.llm.complete_json(system=system, user=user, model=model, max_tokens=1000)
+            citations = grounded_citations(case, raw.get("citations"))
             return AgentArtifact(
                 agent_id=agent.agent_id,
                 agent_name=agent.name,
                 summary=str(raw.get("summary", ""))[:600],
                 findings=_string_list(raw.get("findings")),
+                citations=citations,
                 risk_score=_score(raw.get("risk_score"), default=55),
                 confidence=_confidence(raw.get("confidence"), default=0.72),
                 blockers=_string_list(raw.get("blockers")),
@@ -422,6 +432,18 @@ def heuristic_specialist(case: VendorCase, agent: AgentSpec) -> AgentArtifact:
             "Vendor claims should be converted into evidence requests: SOC report, support SLA, roadmap, and references.",
         ]
         blockers = ["SOC 2 report and customer references are not attached."] if "soc" in case.notes.lower() else []
+        citations = [
+            FindingCitation(
+                claim=f"{case.vendor_name} maps to the stated need for {case.department}.",
+                source="business_need",
+                evidence=case.business_need[:240] or "No business need recorded.",
+            ),
+            FindingCitation(
+                claim="Diligence and pilot scoping must run in parallel given the timeline.",
+                source="timeline",
+                evidence=case.timeline,
+            ),
+        ]
     elif agent.agent_id == "finance_roi":
         risk = 35 + (18 if amount > 75000 else 5)
         findings = [
@@ -430,6 +452,13 @@ def heuristic_specialist(case: VendorCase, agent: AgentSpec) -> AgentArtifact:
             "Renewal terms should include usage caps, opt-out rights, and success metrics before expansion.",
         ]
         blockers = ["No quantified savings target is documented."] if amount > 50000 else []
+        citations = [
+            FindingCitation(
+                claim="Spend level sets the approval and ROI bar.",
+                source="requested_amount_usd",
+                evidence=f"${amount:,.0f}",
+            ),
+        ]
     elif agent.agent_id == "security_compliance":
         risk = 70 if sensitive else 50
         findings = [
@@ -438,6 +467,18 @@ def heuristic_specialist(case: VendorCase, agent: AgentSpec) -> AgentArtifact:
             "Security approval should require SSO, least-privilege roles, incident notice, and data deletion terms.",
         ]
         blockers = ["Privacy/security review required before production data access."] if sensitive else []
+        citations = [
+            FindingCitation(
+                claim="Data access defines the security control baseline.",
+                source="data_access",
+                evidence=", ".join(case.data_access) or "No sensitive data listed.",
+            ),
+            FindingCitation(
+                claim="Named integrations require scoped credentials and logging.",
+                source="integrations",
+                evidence=", ".join(case.integrations) or "No named integrations.",
+            ),
+        ]
     else:
         risk = 68 if sensitive else 52
         findings = [
@@ -446,6 +487,18 @@ def heuristic_specialist(case: VendorCase, agent: AgentSpec) -> AgentArtifact:
             "Human review and exception logging are required for regulated or high-impact decisions.",
         ]
         blockers = ["DPA or regulated-data terms are missing."] if sensitive or "dpa" in case.notes.lower() else []
+        citations = [
+            FindingCitation(
+                claim="Contract/DPA scope is driven by the data the vendor will touch.",
+                source="data_access",
+                evidence=", ".join(case.data_access) or "No sensitive data listed.",
+            ),
+            FindingCitation(
+                claim="Diligence notes flag outstanding legal/contract gaps.",
+                source="notes",
+                evidence=case.notes[:240] or "No diligence notes recorded.",
+            ),
+        ]
 
     if urgent:
         risk += 7
@@ -455,6 +508,7 @@ def heuristic_specialist(case: VendorCase, agent: AgentSpec) -> AgentArtifact:
         agent_name=agent.name,
         summary=f"{agent.name} recommends controlled progression with risk score {risk}/100.",
         findings=findings,
+        citations=citations,
         risk_score=risk,
         confidence=0.76,
         blockers=blockers,
@@ -649,6 +703,33 @@ def _bool(value: Any, *, default: bool) -> bool:
         if lowered in {"false", "no", "0"}:
             return False
     return bool(value)
+
+
+def grounded_citations(case: VendorCase, raw: Any) -> list[FindingCitation]:
+    """Validate model-supplied citations against real case fields.
+
+    A citation is only kept if it names a real VendorCase field and carries
+    non-empty evidence text. This prevents fabricated sources and keeps every
+    rendered citation traceable back to the actual case data.
+    """
+    if not isinstance(raw, list):
+        return []
+    valid_fields = set(VendorCase.model_fields.keys())
+    citations: list[FindingCitation] = []
+    for item in raw:
+        if not isinstance(item, dict):
+            continue
+        source = str(item.get("source_field") or item.get("source") or "").strip()
+        claim = str(item.get("claim") or "").strip()
+        evidence = str(item.get("evidence") or "").strip()
+        if source not in valid_fields or not claim or not evidence:
+            continue
+        citations.append(
+            FindingCitation(claim=claim[:300], source=source, evidence=evidence[:300])
+        )
+        if len(citations) >= 6:
+            break
+    return citations
 
 
 def _dedupe_strings(items: list[str]) -> list[str]:

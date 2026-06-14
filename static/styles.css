@@ -449,7 +449,7 @@ button:disabled {
 
 .context-packet,
 .human-gate,
-.judging-list,
+.review-list,
 .challenge-review,
 .technical-proof {
   display: grid;
@@ -458,7 +458,7 @@ button:disabled {
 
 .context-packet p,
 .human-gate p,
-.judge-item p,
+.evidence-item p,
 .challenge-review p {
   margin: 0;
   line-height: 1.45;
@@ -581,7 +581,7 @@ button:disabled {
   text-transform: uppercase;
 }
 
-.judge-item {
+.evidence-item {
   border: 1px solid var(--line);
   border-left: 4px solid var(--amber);
   border-radius: 7px;
@@ -589,20 +589,20 @@ button:disabled {
   background: #fbfcfb;
 }
 
-.judge-item.met {
+.evidence-item.met {
   border-left-color: var(--green);
 }
 
-.judge-item.missing {
+.evidence-item.missing {
   border-left-color: var(--red);
 }
 
-.judge-item strong {
+.evidence-item strong {
   display: block;
   margin-bottom: 3px;
 }
 
-.judge-item span {
+.evidence-item span {
   display: inline-block;
   margin-bottom: 7px;
   color: var(--muted);
@@ -891,6 +891,140 @@ button:disabled {
   padding: 18px;
 }
 
+.band-proof {
+  display: grid;
+  gap: 14px;
+}
+
+.band-proof-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.band-live-tag {
+  background: var(--green);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.band-sim-tag {
+  background: #a8adb8;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.band-room-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.band-room-link span {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.band-room-link a {
+  color: var(--teal);
+  font-weight: 600;
+  word-break: break-all;
+}
+
+.band-proof-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.band-stat {
+  background: #f6f8ff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: grid;
+  gap: 2px;
+}
+
+.band-stat span {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.band-stat strong {
+  font-size: 24px;
+  color: var(--indigo);
+}
+
+.band-stat small {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.band-sample {
+  color: var(--muted);
+}
+
+.band-sample code {
+  background: #eef1ff;
+  padding: 2px 6px;
+  border-radius: 5px;
+  color: var(--indigo);
+}
+
+.band-note {
+  color: var(--muted);
+  font-style: italic;
+}
+
+.citations {
+  margin-top: 10px;
+  border-top: 1px dashed var(--line);
+  padding-top: 8px;
+}
+
+.citations > small {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 11px;
+}
+
+.citation {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.citation code {
+  background: #f4fbf7;
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: var(--green);
+  font-size: 11px;
+}
+
+.band-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 1120px) {
   .app-shell,
   .grid {
@@ -940,7 +1074,8 @@ button:disabled {
   .handoff-map,
   .split-list,
   .artifact-grid,
-  .impact-grid {
+  .impact-grid,
+  .band-proof-grid {
     grid-template-columns: 1fr;
   }
 

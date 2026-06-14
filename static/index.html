@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ProcureGuard AI</title>
+    <title>ProcureGuard</title>
     <link rel="stylesheet" href="/static/styles.css" />
   </head>
   <body>
@@ -12,7 +12,7 @@
         <div class="brand">
           <span class="brand-mark">PG</span>
           <div>
-            <h1>ProcureGuard AI</h1>
+            <h1>ProcureGuard</h1>
             <p>Vendor approval room</p>
           </div>
         </div>
@@ -23,9 +23,9 @@
           <select id="caseSelect"></select>
           <label class="toggle-row" for="fastDemoMode">
             <input id="fastDemoMode" type="checkbox" />
-            <span>Fast demo mode</span>
+            <span>Fast local mode</span>
           </label>
-          <button id="runButton" type="button">Run Agent Review</button>
+          <button id="runButton" type="button">Run Review</button>
           <button id="reportButton" type="button" disabled>Download Run Report</button>
           <button id="bundleButton" type="button" disabled>Download Evidence Bundle</button>
           <div id="health" class="health">Checking runtime...</div>
@@ -36,9 +36,9 @@
             <summary>Custom case</summary>
             <div class="form-grid">
               <label for="customVendor">Vendor</label>
-              <input id="customVendor" type="text" value="Acme AI Ops" />
+              <input id="customVendor" type="text" value="Acme Operations Platform" />
               <label for="customProduct">Product</label>
-              <input id="customProduct" type="text" value="AI incident triage assistant" />
+              <input id="customProduct" type="text" value="Incident triage workspace" />
               <label for="customRequester">Requester</label>
               <input id="customRequester" type="text" value="Jordan Lee" />
               <label for="customDepartment">Department</label>
@@ -61,7 +61,7 @@
         </section>
 
         <section class="panel participants">
-          <h2>Agent Board</h2>
+          <h2>Review Team</h2>
           <div id="participants"></div>
         </section>
       </aside>
@@ -69,7 +69,7 @@
       <section class="workspace">
         <header class="topbar">
           <div>
-            <p class="eyebrow">Band of Agents submission system</p>
+            <p class="eyebrow">Procurement control room</p>
             <h2 id="caseTitle">Procurement approval</h2>
           </div>
           <div class="run-meta">
@@ -99,12 +99,20 @@
           </div>
         </section>
 
+        <section class="surface band-proof-surface">
+          <div class="surface-head">
+            <h3>Live Band Proof</h3>
+            <span id="bandModeBadge">Pending</span>
+          </div>
+          <div id="bandProof" class="band-proof empty-state">Run a case to show how this workflow runs on the Band platform.</div>
+        </section>
+
         <section class="surface">
           <div class="surface-head">
             <h3>Coordination Handoff Map</h3>
             <span id="handoffBadge">Pending</span>
           </div>
-          <div id="handoffMap" class="handoff-map empty-state">Run a case to visualize how agents route work through Band-style @mentions.</div>
+          <div id="handoffMap" class="handoff-map empty-state">Run a case to visualize how review work is routed across the room.</div>
         </section>
 
         <section class="surface">
@@ -158,10 +166,10 @@
 
           <div class="surface">
             <div class="surface-head">
-              <h3>Judging Evidence</h3>
+              <h3>Review Evidence</h3>
               <span id="collabBadge">0/100</span>
             </div>
-            <div id="judgingEvidence" class="judging-list empty-state">Run a case to map the workflow to hackathon requirements.</div>
+            <div id="reviewEvidence" class="review-list empty-state">Run a case to build the coordination evidence record.</div>
           </div>
         </section>
 
@@ -176,10 +184,10 @@
 
           <div class="surface">
             <div class="surface-head">
-              <h3>Framework & Audit Proof</h3>
+              <h3>Framework & Audit Record</h3>
               <span id="auditBadge">Pending</span>
             </div>
-            <div id="technicalProof" class="technical-proof empty-state">Cross-framework profile and audit seal will appear here.</div>
+            <div id="technicalProof" class="technical-proof empty-state">Framework profile and audit seal will appear here.</div>
           </div>
         </section>
 

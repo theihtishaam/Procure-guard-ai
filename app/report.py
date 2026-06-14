@@ -16,21 +16,62 @@ def workflow_markdown_report(run: WorkflowRun) -> str:
         f"- Collaboration score: `{run.collaboration_score}/100`",
         f"- Room: `{run.room_name}`",
         "",
-        "## Case",
-        "",
-        f"- Requester: {run.case.requester}",
-        f"- Department: {run.case.department}",
-        f"- Product: {run.case.product}",
-        f"- Spend: ${run.case.requested_amount_usd:,.0f}",
-        f"- Data access: {', '.join(run.case.data_access) or 'None listed'}",
-        f"- Integrations: {', '.join(run.case.integrations) or 'None listed'}",
-        "",
-        "## Collaboration Evidence",
+        "## Band Platform Proof",
         "",
     ]
+    if run.mode == "band-live":
+        real_messages = [m for m in run.messages if m.band_delivery == "message" and m.band_message_id]
+        lines.extend(
+            [
+                f"- Mode: `band-live` (ran on the real Band platform at app.band.ai)",
+                f"- Band room ID: `{run.band_room_id}`",
+                f"- Band room URL: {run.band_room_url}",
+                f"- Real Band messages delivered: `{len(real_messages)}`",
+                f"- Real Band task events: `{len(run.band_events)}`",
+            ]
+        )
+        if real_messages:
+            lines.append(f"- Example Band message ID: `{real_messages[0].band_message_id}`")
+    else:
+        lines.append(
+            "- Mode: `local-band-sim` (local Band simulator; set BAND_ENABLED=1 with registered "
+            "agents in agent_config.yaml to run on the real platform)."
+        )
+    lines.extend(
+        [
+            "",
+            "## Case",
+            "",
+            f"- Requester: {run.case.requester}",
+            f"- Department: {run.case.department}",
+            f"- Product: {run.case.product}",
+            f"- Spend: ${run.case.requested_amount_usd:,.0f}",
+            f"- Data access: {', '.join(run.case.data_access) or 'None listed'}",
+            f"- Integrations: {', '.join(run.case.integrations) or 'None listed'}",
+            "",
+            "## Collaboration Evidence",
+            "",
+        ]
+    )
     for item in run.collaboration_evidence:
         lines.append(f"- **{item.label}**: {item.status} - {item.detail}")
-    lines.extend(["", "## Task State Board", ""])
+    lines.extend(["", "## Specialist Artifacts And Cited Evidence", ""])
+    for artifact in run.artifacts:
+        lines.append(
+            f"### {artifact.agent_name} (risk {artifact.risk_score}/100, "
+            f"confidence {round(artifact.confidence * 100)}%)"
+        )
+        lines.append("")
+        lines.append(f"{artifact.summary}")
+        lines.append("")
+        for finding in artifact.findings:
+            lines.append(f"- {finding}")
+        if artifact.citations:
+            lines.extend(["", "**Cited evidence (grounded in case fields):**", ""])
+            for citation in artifact.citations:
+                lines.append(f"- _{citation.claim}_ -> `{citation.source}`: {citation.evidence}")
+        lines.append("")
+    lines.extend(["## Task State Board", ""])
     for task in run.task_state:
         refs = ", ".join(task.evidence_refs) if task.evidence_refs else "No refs"
         lines.append(f"- **{task.label}** ({task.status}) - Owner: {task.owner}. {task.summary} Evidence: {refs}.")
