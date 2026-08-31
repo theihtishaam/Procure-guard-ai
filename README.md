@@ -1,8 +1,15 @@
-# ProcureGuard
+# ProcureGuard AI
 
-ProcureGuard is a vendor approval workspace for teams that need procurement, finance, security, legal, and leadership review in one place.
+> Multi-agent enterprise procurement approval, running on the real Band platform. Built for the Band of Agents Hackathon (Track 1: Internal Enterprise Workflows).
 
-Instead of sending a purchase request through separate email threads and spreadsheets, the system opens a shared review room. Specialist agents inspect the same request, hand off structured findings, challenge unsafe assumptions, and produce a decision packet that a human approver can audit before a purchase order moves forward.
+**Live demo:** https://procureguard-ai-band-agents.onrender.com
+**Demo video:** https://youtu.be/KhKxOJJEYho
+
+ProcureGuard AI is a vendor approval workspace for teams that need procurement, finance, security, legal, and leadership review in one place.
+
+Instead of sending a purchase request through separate email threads and spreadsheets, the system opens a shared Band review room. Eight cross-framework AI agents inspect the same request, hand off structured findings with cited evidence, challenge unsafe assumptions through an adversarial red-team review, and produce a cryptographically sealed decision packet that a human approver signs off before a purchase order moves forward.
+
+It is a procurement decision court, not a report generator.
 
 ## What The App Does
 
@@ -45,8 +52,8 @@ ProcureGuard runs on the real Band platform (`app.band.ai`), not a simulator. A 
 
 ## Screenshots And Video
 
-- Live Band walkthrough video: `output/submission/procureguard-live-band-walkthrough.webm`
-- Earlier simulator walkthrough: `output/submission/procureguard-demo.webm`
+- Narrated demo (YouTube): https://youtu.be/KhKxOJJEYho
+- Narrated walkthrough file: `output/submission/procureguard-narrated-final.mp4`
 
 | Handoff map | Task state |
 | --- | --- |

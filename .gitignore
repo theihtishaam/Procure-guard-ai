@@ -18,3 +18,9 @@ dist/
 .playwright-cli/
 .playwright-mcp/
 .claude/
+
+# Video production intermediates + oversized/accidental artifacts
+eng.traineddata
+output/video_build/
+output/vreview/
+output/submission/procureguard-narrated-recording.mp4
