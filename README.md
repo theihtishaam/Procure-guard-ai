@@ -1,5 +1,8 @@
 # ProcureGuard AI
 
+[![Follow Ihtisham on GitHub](https://img.shields.io/badge/Follow-Ihtisham%20on%20GitHub-181717?logo=github&logoColor=white)](https://github.com/theihtishaam)
+
+
 > Multi-agent enterprise procurement approval, running on the real Band platform. Built for the Band of Agents Hackathon (Track 1: Internal Enterprise Workflows).
 
 **Live demo:** https://procureguard-ai-band-agents.onrender.com
